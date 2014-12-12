@@ -31,12 +31,23 @@
 	}
 	$pagingLink = getPagingLinkBackEndFrontEnd_ajax($nume,$page_count,'',$newpagenumber, "Family_History");
 ?>
-
+ <?php if($_SESSION['UserType']=="Doctor" || $_SESSION['UserType']=="MD" || $_SESSION['UserType']=="Nutritionist"){ ?>
+ <style>
+ .tdborder
+ {
+ 	padding:10px 5px;
+	vertical-align: middle;
+	border-bottom:solid 1px #e4e4e4;
+ }
+ </style>
+ <?php } ?>
 <table cellpadding="0" cellspacing="0"  style="width:100%" >
                       <tr>
                         <td class="tbl_head" >Relation</td>
                         <td class="tbl_head">Medical Condition</td>
+                        <?php if($_SESSION['UserType']!="Doctor" && $_SESSION['UserType']!="MD" && $_SESSION['UserType']!="Nutritionist"){ ?>
                         <td class="tbl_head">Actions</td>
+						<?php } ?>
                       </tr>
                        <?php  while($get_array = mysql_fetch_array( $retrive_Array )){?>
                         <tr id="tr_family_history_<?php echo $get_array['family_history_id']*121?>">
@@ -47,6 +58,7 @@
 							 ?>       
                         </td>
                         <td class="tdborder" style="padding-left:20px;"><?php echo str_replace("\\","",$get_array['medical_condition']);?> </td>
+						 <?php if($_SESSION['UserType']!="Doctor" && $_SESSION['UserType']!="MD" && $_SESSION['UserType']!="Nutritionist"){ ?>
                         <td class="tdborder" style="padding-left:20px;"><table cellpadding="0" cellspacing="0"  style="width:100%" >
                            <tr>
                                   <td class="SubTd" style="display:none;"><a class="fancybox-manual-c" style="cursor: pointer;"><img src="images/register_steps/view_icon.jpg" alt=""></a></td>
@@ -59,6 +71,7 @@
                                   <td class="SubTd2"><a  href="#" onclick="javascript:Family_History_Delete_By_Id('<?php echo  $converter->encode($get_array['family_history_id'])?>','<?php echo $get_array['family_history_id']*121?>')"><img src="images/register_steps/delete_icon.jpg" alt=""></a></td>
                                 </tr>
                           </table></td>
+						  <?php } ?>
                       </tr>
                       
                       <?php  } ?>

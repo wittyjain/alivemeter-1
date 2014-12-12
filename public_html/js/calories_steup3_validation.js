@@ -1,7 +1,7 @@
 function Add_Option_Time(type,dropdown1,dropdown2)
 {
 	var type=document.getElementById("txtType").value;
-	var i_h_start="0";i_h_end="0";i_m_start="0";i_m_end="0";j_n="12";
+	var i_h_start="0";i_h_end="0";i_m_start="0";i_m_end="0";j_n="1";
 
 	i_h_start=parseFloat(i_h_start);
 	i_h_end=parseFloat(i_h_end);
@@ -18,7 +18,7 @@ function Add_Option_Time(type,dropdown1,dropdown2)
 
 	if (type=="Lunch")
 	{
-		i_h_start=12;i_h_end=17;
+		i_h_start=13;i_h_end=17;
 	}
 
 	if (type=="Snacks")
@@ -46,25 +46,44 @@ function Add_Option_Time(type,dropdown1,dropdown2)
 	option.text ="HH";
 	option.value ="0";
 	TimeH.add(option);
-
+	var jo="";
 	for (var j=i_h_start;j < i_h_end ; j++ )
 	{
+
+			 
 		option = document.createElement("option");
 		if (type!="Lunch")
 		{
+			jo=j;
+			if (j < 10)
+			{
+				jo="0"+j;		
+			}
+			
 			option.text =j;
-			option.value =j;
+			option.value =jo;
+
+			
 		}
 		else
 		{
+		 
+			jo=j_n;
+			if (j_n < 10)
+			{
+				jo="0"+j_n;		
+			}
+			
 			option.text =j_n;
-			option.value =j_n;
+			option.value =jo;
+
 			 
-			if (j==12)
+			 
+			if (j==13)
 			{
 				
 				j_n=parseFloat(j_n);
-				j_n=0;
+				j_n=1;
 			}
 		
 			j_n=j_n+1;
@@ -611,7 +630,6 @@ function Retrive_Cal_Lunch(type)
 	var date=document.getElementById("txtLunchDate").value;
 	
 	pageURL=hostname+"/includes/get_result_nutrition.inc.php?LReceipe_id="+LReceipe_id+"&type="+type+"&date="+date;
-	pageURL=hostname+"/includes/store_result_nutrition.inc.php?LReceipe_id="+LReceipe_id+"&type="+type+"&date="+date;
 	document.getElementById('ifLunch').height='0px';
 	document.getElementById("ifLunch").src= pageURL;
 	SetFrameHeight1();

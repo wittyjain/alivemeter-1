@@ -18,21 +18,45 @@ $type=$_GET['type'];
 $String="";
 
 if($type=="Receipe"){
-	
-	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 order by name";
-	$result1 = mysql_query($query);
-	if ($result1 != "") {
-		$rowcount = mysql_num_rows($result1);
-		if ($rowcount > 0) {
-		while ($row = mysql_fetch_array($result1)) {
+        $query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '".$q."%' order by name";
+	$primary_result = mysql_query($query);
+	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '% ".$q."%' order by name";
+	$secondary_result = mysql_query($query);
+	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '%".$q."%' and name NOT LIKE '".$q."%' and name NOT LIKE '% ".$q."%' order by name";
+	$tertiary_result = mysql_query($query);
+	if ($primary_result != "") {
+		$rowcount = mysql_num_rows($primary_result);
+		if ($rowcount > 0 && count($result)<80) {
+		while ($row = mysql_fetch_array($primary_result)) {
 			 $id = $row['id'];
 			 $key = $row['name'];
-			 if (strpos(strtolower($key), $q) !== false) {
-				array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
-			  }
-			if (count($result) > 50)
+			 array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			 if (count($result) > 80)
 				break;
-				
+			}
+		}
+	}
+	if ($secondary_result != "") {
+		$rowcount = mysql_num_rows($secondary_result);
+		if ($rowcount > 0 && count($result)<80) {
+		while ($row = mysql_fetch_array($secondary_result)) {
+			 $id = $row['id'];
+			 $key = $row['name'];
+			 array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			 if (count($result) > 80)
+				break;
+			}
+		}
+	}
+	if ($tertiary_result != "") {
+		$rowcount = mysql_num_rows($tertiary_result);
+		if ($rowcount > 0 && count($result)<80) {
+		while ($row = mysql_fetch_array($tertiary_result)) {
+			 $id = $row['id'];
+			 $key = $row['name'];
+			 array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			 if (count($result) > 80)
+				break;
 			}
 		}
 	}
@@ -40,25 +64,56 @@ $String="No records found";
 }
 
 else  if($type=="ReceipeNew"){
-	
-	$query = "SELECT id,name,portion FROM tbl_recipe WHERE isdeleted = 0 and approved=1 order by name";
-	$result1 = mysql_query($query);
-	if ($result1 != "") {
-		$rowcount = mysql_num_rows($result1);
-		if ($rowcount > 0) {
-		while ($row = mysql_fetch_array($result1)) {
+	$query = "SELECT id,name, portion FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '".$q."%' order by name";
+	$primary_result = mysql_query($query);
+	$query = "SELECT id,name, portion FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '% ".$q."%' order by name";
+	$secondary_result = mysql_query($query);
+	$query = "SELECT id,name, portion FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '%".$q."%' and name NOT LIKE '".$q."%' and name NOT LIKE '% ".$q."%' order by name";
+	$tertiary_result = mysql_query($query);
+
+	if ($primary_result != "") {
+		$rowcount = mysql_num_rows($primary_result);
+		if ($rowcount > 0 && $count(result)<80) {
+		while ($row = mysql_fetch_array($primary_result)) {
 			$cal=GetValue("select sum(energy) as col from tbl_recipe_det where parent_id=".$row['id'],"col");
 			 $id = $row['id']."###".$row['portion']."###".$cal;
 			 $key = $row['name'];
-			 if (strpos(strtolower($key), $q) !== false) {
-				array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
-			  }
-			if (count($result) > 50)
+			 array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			if (count($result) > 80)
 				break;
 				
 			}
 		}
 	}
+        if ($secondary_result != "") {
+		$rowcount = mysql_num_rows($secondary_result);
+		if ($rowcount > 0 && $count(result)<80) {
+		while ($row = mysql_fetch_array($secondary_result)) {
+			$cal=GetValue("select sum(energy) as col from tbl_recipe_det where parent_id=".$row['id'],"col");
+			 $id = $row['id']."###".$row['portion']."###".$cal;
+			 $key = $row['name'];
+			 array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			if (count($result) > 80)
+				break;
+				
+			}
+		}
+	}  
+        if ($tertiary_result != "") {
+		$rowcount = mysql_num_rows($tertiary_result);
+		if ($rowcount > 0 && $count(result)<80) {
+		while ($row = mysql_fetch_array($tertiary_result)) {
+			$cal=GetValue("select sum(energy) as col from tbl_recipe_det where parent_id=".$row['id'],"col");
+			 $id = $row['id']."###".$row['portion']."###".$cal;
+			 $key = $row['name'];
+			 array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			if (count($result) > 80)
+				break;
+				
+			}
+		}
+	}
+
 $String="No records found";
 }
 

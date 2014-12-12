@@ -79,7 +79,7 @@ $doc_consult_count="";
                         <div class="heder green" style="background-color:<?php echo $get_array['bg_color']?>"><span class="arrow" style="border-top: 8px solid <?php echo $get_array['bg_color']?>;"></span><?php echo $cat_name=GetValue("select category_name as col from tbl_category where category_id=".$get_array['category_id'], "col");?> </div>
                         
                         
-                        <img src="<?php echo $strHostName;?>/top_stories/<?php echo $get_array['thumb_image'];?>" width="193" height="74" style="margin-top:25px;"></div>
+                       <img alt="<?php echo $get_array['thumb_title'];?>" title="<?php echo $get_array['thumb_title'];?>" src="<?php echo $strHostName;?>/top_stories/<?php echo $get_array['thumb_image'];?>" width="193" height="74" style="margin-top:25px;"></div>
                         
                         
                       <div class="details"><?php echo $get_array['title']?></div>

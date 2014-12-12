@@ -54,7 +54,7 @@
       <div class="top_stories" >
        <ul class="bxslider" style="border:solid 0px red; z-index:9999; position:relative;">
           <?php 
-				$query = "SELECT * FROM ".Top_Story." WHERE cover_story_id <> 0 limit 3";
+				$query = "SELECT * FROM ".Top_Story." WHERE cover_story_id <> 0 order by cover_story_id desc limit 3";
 			  //  echo $query;
 				$result = mysql_query($query);
 				if($result != "") {
@@ -66,7 +66,7 @@
 						$description=$row['description'];
 						$image=$row['header_image'];
 		?>
-          <li><img src="<?php echo $strHostName;?>/top_stories/<?php echo $image;?>" style="height:108px; width:145px; border: solid 1px #666666;">
+          <li><img  alt="<?php echo $home_title;?>" title="<?php echo $home_title;?>" src="<?php echo $strHostName;?>/top_stories/<?php echo $home_image;?>" style="height:108px; width:145px; border: solid 1px #666666;">
             <h3 class="t_h"><?php  echo $title; ?></h3>
             <p><?php echo  truncate($description,150);?></p>
             <p style="padding-top: 30px;">
@@ -83,7 +83,7 @@
       <div class="deals">
       <ul class="bxslider_1">
       <?php 
-				$query1 = "SELECT * FROM ".Deal." WHERE deal_id <> 0 order by deal_id limit 9";
+				$query1 = "SELECT * FROM ".Deal." WHERE deal_id <> 0 order by deal_id desc limit 9";
 				//echo $query;
 				$result1 = mysql_query($query1);
 				if($result1 != "") {
@@ -92,7 +92,7 @@
 					while($row1 = mysql_fetch_assoc($result1)) {
 						extract($row1);
 			?>
-           <li><a href="<?php echo $strHostName;?>/deals_detailspage.php?cid=<?php echo $converter->encode($deal_id)?>"><span></span><img src="<?php echo $strHostName;?>/top_stories/<?php echo $row1['image'];?>" style="width:145px; height:108px;" /><p style="color: #7ba400; padding:5px 0;"><?php echo $vendor; ?></p>
+           <li><a alt="<?php echo $row1['image_title'];?>"  title="<?php echo $row1['image_title'];?>" href="<?php echo $strHostName;?>/deals_detailspage.php?cid=<?php echo $converter->encode($deal_id)?>"><span></span><img src="<?php echo $strHostName;?>/top_stories/<?php echo $row1['image'];?>" alt="<?php echo $row1['image_title'];?>"  title="<?php echo $row1['image_title'];?>" style="width:145px; height:108px;" /><p style="color: #7ba400; padding:5px 0;"><?php echo $vendor; ?></p>
 		   
 		   <p style="color: #7ba400;padding:0px; margin:0px;"><?php echo $offer; ?></p>
 		   </a></li>

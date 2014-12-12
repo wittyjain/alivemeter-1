@@ -39,3 +39,4 @@
 [14-Nov-2014 16:05:06 Asia/Kolkata] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alivemeter/public_html/retrive_files/retrive_sugar_profile.inc.php on line 43
 [29-Nov-2014 06:39:00 Asia/Kolkata] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alivemeter/public_html/retrive_files/retrive_post_comment.inc.php on line 33
 [29-Nov-2014 06:39:00 Asia/Kolkata] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alivemeter/public_html/retrive_files/retrive_post_comment.inc.php on line 82
+[11-Dec-2014 15:17:00 Asia/Kolkata] PHP Warning:  mysql_fetch_array() expects parameter 1 to be resource, boolean given in /home/alivemeter/public_html/retrive_files/retrive_hospitalization.inc.php on line 53

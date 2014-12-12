@@ -1105,3 +1105,17 @@
 [08-Dec-2014 13:39:49 UTC] PHP Warning:  Illegal string offset 'pancard' in /home/alivemeter/public_html/lifestyle/userDetailsEntry.html on line 325
 [08-Dec-2014 13:39:49 UTC] PHP Warning:  Illegal string offset 'earning_member' in /home/alivemeter/public_html/lifestyle/userDetailsEntry.html on line 348
 [08-Dec-2014 13:39:49 UTC] PHP Warning:  Illegal string offset 'earning_member' in /home/alivemeter/public_html/lifestyle/userDetailsEntry.html on line 349
+[09-Dec-2014 12:30:29 UTC] PHP Warning:  mysql_connect(): Access denied for user 'root'@'localhost' (using password: YES) in /home/alivemeter/public_html/lifestyle/DBSingleton.php on line 13
+[09-Dec-2014 12:30:29 UTC] PHP Warning:  mysql_select_db(): Access denied for user 'alivemeter'@'localhost' (using password: NO) in /home/alivemeter/public_html/lifestyle/DBSingleton.php on line 14
+[09-Dec-2014 12:30:29 UTC] PHP Warning:  mysql_select_db(): A link to the server could not be established in /home/alivemeter/public_html/lifestyle/DBSingleton.php on line 14
+[09-Dec-2014 12:30:29 UTC] PHP Warning:  mysql_query(): Access denied for user 'alivemeter'@'localhost' (using password: NO) in /home/alivemeter/public_html/lifestyle/DBSingleton.php on line 34
+[09-Dec-2014 12:30:29 UTC] PHP Warning:  mysql_query(): A link to the server could not be established in /home/alivemeter/public_html/lifestyle/DBSingleton.php on line 34
+[09-Dec-2014 18:07:35 Asia/Calcutta] PHP Strict Standards:  Non-static method UserModel::getUserIdPasswordFromProfileId() should not be called statically in /home/alivemeter/public_html/lifestyle/createAccount.php on line 156
+[09-Dec-2014 12:51:54 UTC] PHP Strict Standards:  Non-static method UserModel::getUserIdPasswordFromProfileId() should not be called statically in /home/alivemeter/public_html/lifestyle/createAccount.php on line 165
+[09-Dec-2014 12:54:23 UTC] PHP Strict Standards:  Non-static method UserModel::getUserIdPasswordFromProfileId() should not be called statically in /home/alivemeter/public_html/lifestyle/createAccount.php on line 165
+[09-Dec-2014 12:55:54 UTC] PHP Strict Standards:  Non-static method UserModel::getUserIdPasswordFromProfileId() should not be called statically in /home/alivemeter/public_html/lifestyle/createAccount.php on line 165
+[09-Dec-2014 15:57:04 UTC] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/alivemeter/public_html/lifestyle/db.php on line 172
+[09-Dec-2014 15:58:45 UTC] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/alivemeter/public_html/lifestyle/db.php on line 172
+[09-Dec-2014 16:02:28 UTC] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/alivemeter/public_html/lifestyle/db.php on line 162
+[09-Dec-2014 16:02:32 UTC] PHP Parse error:  syntax error, unexpected '?>', expecting function (T_FUNCTION) in /home/alivemeter/public_html/lifestyle/db.php on line 162
+[09-Dec-2014 21:57:37 Asia/Calcutta] PHP Fatal error:  Call to undefined method UserModel::addPatientTestID() in /home/alivemeter/public_html/lifestyle/createAccount.php on line 199

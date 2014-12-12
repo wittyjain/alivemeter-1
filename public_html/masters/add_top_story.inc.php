@@ -127,7 +127,7 @@ input
 <?php
 $id=""; $cover_story_id=""; $title=""; $thumb_image=""; $header_image=""; $category_id="";$description=""; $isdeleted="0"; $isactive="1"; $created_date=date('d-m-Y h:i:s'); 
 $updatedate=date('d-m-Y h:i:s'); $file=""; $sortby=""; $code="#99cc00"; $cat_id=""; $thumb_image1=""; $header_image1=""; $thumb_image=""; $header_image="";
-$meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
+$meta_title=""; $meta_description=""; $meta_keywords="";  $image_url=""; $thumb_title=""; $header_title=""; $home_image=""; $home_title=""; $url_title="";
 
 ?>
 	<?php
@@ -140,6 +140,7 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
 
 	if(isset($_POST['btnSubmit'])) {
 		$title = trim(str_replace("'", "''", $_POST['txtTitle']));
+		$url_title = trim(str_replace("'", "''", $_POST['txtUrlTitle']));
 		$sortby = trim(str_replace("'", "''", $_POST['txtSortby']));
 		$code = trim(str_replace("'", "''", $_POST['colorhex']));
 		$meta_title = trim(str_replace("'", "''", $_POST['txtMetaTitle']));
@@ -181,7 +182,26 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
 					$header_image = $file1;
 				}
 			}
+			
+		$home_image = $_FILES['fulUpload2']['name'];
+		$file2=trim(str_replace("'","", $_POST['txtHomeImg']));
 		
+		if($home_image != "")
+		     {
+				uploadFile('fulUpload2','top_stories/','');
+			 }
+			else
+			{
+				if($file2 == "") {
+					$home_image="noimage.gif";	
+				} else {
+					$home_image = $file2;
+				}
+			}
+			
+		$thumb_title = trim(str_replace("'", "''", $_POST['txtThumbTitle']));
+		$header_title = trim(str_replace("'", "''", $_POST['txtHeaderTitle']));
+		$home_title = trim(str_replace("'", "''", $_POST['txtHomeTitle']));
 		$description = trim(str_replace("'", "''", $_POST['txtDescription']));
 
 		if(isset($_POST['chkIsDeleted']))
@@ -210,9 +230,14 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
 				
 		 $data = array(
 			'title' => $title, 
+			'url_title' => $url_title,
 			'category_id' => $category_id,
 			'thumb_image'=>$thumb_image,
-			'header_image' => $thumb_image,
+			'header_image' => $header_image,
+			'thumb_title' => $thumb_title,
+			'header_title' => $header_title,
+			'home_image' => $home_image,
+			'home_title' => $home_title,
 			'created_date' => $created_date,
 			'description'=>$description,
 			'bg_color'=>$code,
@@ -257,8 +282,13 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
 				while($row = mysql_fetch_assoc($result)) {
 					extract($row);
 					$cat_id=$row['category_id'];
+					$url_title=$row['url_title'];
 					$thumb_image=$row['thumb_image'];
+					$thumb_title=$row['thumb_title'];
 					$header_image=$row['header_image'];
+					$header_title=$row['header_title'];
+					$home_image=$row['home_image'];
+					$home_title=$row['home_title'];
 					$sortby=$row['sortby'];
 					$code=$row['bg_color'];
 					$meta_title=$row['meta_title'];
@@ -292,6 +322,14 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
                     <div class="formcontrol2">
                       <input type="text" name="txtTitle" id="txtTitle" value="<?php echo truncate($title,20);?>" />
                     </div>
+                    
+                    <div class="dvFloat">
+                     <div class="formlabel1">
+                      <label class="formlabel1">Url Title<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:4px;">
+                      <input type="text" name="txtUrlTitle" id="txtUrlTitle" value="<?php echo truncate($url_title,20);?>" />
+                    </div>
                     <div class="dvFloat">
                     <div class="formlabel1">
                       <label class="formlabel1">Category<span class="redtxt">*</span> </label>
@@ -323,29 +361,67 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
                     
                       <div class="dvFloat">
                     <div class="formlabel1">
-                      <label class="formlabel1">Image<span class="redtxt">*</span> </label>
+                      <label class="formlabel1">Thumb Image<span class="redtxt">*</span> </label>
                     </div>
                     <div class="formcontrol2" style="border:solid 0px red; padding-top:4px;">
                       <input type="file" name="fulUpload" id="fulUpload" style="width:35%; float:left;" />
-                      <input type="hidden" name="txtThumbImg" id="txtThumbImg" value="<?php echo $thumb_image;?>" />
+                      <input type="hidden" name="txtThumbImg" id="txtThumbImg" value="<?php echo $thumb_image;?>" />(Size: width:193px height:74px) 
                       <?php if($thumb_image!="") { ?>
-                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $thumb_image?>"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $thumb_image?>"style="width:50px; height:50px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
+                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $thumb_image?>" style="float:left;"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $thumb_image?>"style="width:40px; height:40px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
                      <?php } ?>
                      </div>
                      </div>
                      
-                         <div class="dvFloat" style="display:none;">
+                     
+                     <div class="formlabel1">
+                      <label class="formlabel1">Thumb Title<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:4px;">
+                       <input type="text" name="txtThumbTitle" id="txtThumbTitle" value="<?php echo $thumb_title;?>" />
+                      </div>
+                     
+                         <div class="dvFloat">
                     <div class="formlabel1">
                       <label class="formlabel1">Header Image<span class="redtxt">*</span> </label>
                     </div>
                     <div class="formcontrol2" style="padding-top:4px;">
                       <input type="file" name="fulUpload1" id="fulUpload1" style="width:35%; float:left;" />
-                      <input type="hidden" name="txtHeaderImg" id="txtHeaderImg" value="<?php echo $header_image1;?>" />
-                      <?php if($header_image1 !="") { ?>
-                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $header_image1?>"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $header_image1?>"style="width:50px; height:50px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
+                      <input type="hidden" name="txtHeaderImg" id="txtHeaderImg" value="<?php echo $header_image;?>" />(Size: width:638px height:246px) 
+                      <?php if($header_image !="") { ?>
+                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $header_image?>" style="float:left;"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $header_image?>"style="width:40px; height:40px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
                      <?php } ?>
                     </div>
                     </div>
+                    
+                    
+                    <div class="formlabel1">
+                      <label class="formlabel1">Header Title<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:4px;">
+                       <input type="text" name="txtHeaderTitle" id="txtHeaderTitle" value="<?php echo $header_title;?>" />
+                      </div>
+                    
+                    
+                    <div class="dvFloat">
+                    <div class="formlabel1">
+                      <label class="formlabel1">Home Image<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:4px;">
+                      <input type="file" name="fulUpload2" id="fulUpload2" style="width:35%; float:left;" />
+                      <input type="hidden" name="txtHomeImg" id="txtHomeImg" value="<?php echo $home_image;?>" />(Size: width:145px height:108px) 
+                      <?php if($home_image !="") { ?>
+                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $home_image?>" style="float:left"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $home_image?>"style="width:40px; height:40px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
+                     <?php } ?>
+                    </div>
+                    </div>
+                    
+                    <div class="formlabel1">
+                      <label class="formlabel1">Home Title<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:4px;">
+                       <input type="text" name="txtHomeTitle" id="txtHomeTitle" value="<?php echo $home_title;?>" />
+                      </div>
+                    
                     <div class="formlabel1">
                       <label class="formlabel1">Description<span class="redtxt">*</span> </label>
                     </div>

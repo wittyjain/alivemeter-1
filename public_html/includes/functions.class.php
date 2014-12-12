@@ -217,7 +217,7 @@
 				$data = array(
 					'name' => $name,
 					'lastname' => $lastname,
-					'user_type' => 'Free',
+					'user_type' => $user_type,
 					'password'=>$password,
 					'gender'=>$gender,
 					'registration_date' => $createdate,
@@ -539,7 +539,7 @@
 				//$life_expectancy=$data_values["life_expectancy"];
 				$accountholder=$data_values["accountholder"];
 				$pid=$data_values["pid"];
-				
+				$user_type=$data_values["user_type"];
 				
 
 				$update_times=GetValue("select update_times as col from ".Users." where property_id=".$id, "col");		
@@ -594,6 +594,7 @@
 					//'age_of_retirement' => $age_of_retirement,
 					//'life_expectancy' => $life_expectancy,
 					'parent_id'=>$pid,
+					'user_type'=>$user_type,
 					 
 				);
 				
@@ -2129,7 +2130,8 @@
 						$messageText="Dear ".$row_p['doctor_name'].", You have received an email query from Alivemeter user. Please look into the query. The Alivemeter Team.";
 						$time=date('h:i:s');
 						
-						/*$url = "http://59.162.167.52/api/MessageCompose";
+						///uncomment from madhu
+						$url = "http://59.162.167.52/api/MessageCompose";
 						
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL, $url);
@@ -2138,7 +2140,7 @@
 						curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 						$result = curl_exec($ch);
-						*/
+						
 					
 						$string="";
 						$to = $row_p['email'];
@@ -2198,7 +2200,7 @@
 						
 			 /// echo $strBody;
 		
-					///	 SendEmail("Alivemeter Team", "support@alivemeter.com", $to, $strSubject, $strBody);
+						 SendEmail("Alivemeter Team", "support@alivemeter.com", $to, $strSubject, $strBody);
 
 					}}} 
 				
@@ -2836,7 +2838,7 @@
 				}	
 				
 				
-				if($type=="Nutritionist")
+				if($type=="Nutritionist" && ($doctor_id == "" || $doctor_id==0))
 				{
 					$data1 = array(
 						'parentid' => $doctor_id,
@@ -3629,8 +3631,8 @@
 						$time=date('h:i:s');
 						
 						
-						
-						/*$url = "http://59.162.167.52/api/MessageCompose";
+						//uncomment from madhu
+						$url = "http://59.162.167.52/api/MessageCompose";
 						
 						$ch = curl_init();
 						curl_setopt($ch, CURLOPT_URL, $url);
@@ -3638,7 +3640,7 @@
 						curl_setopt($ch, CURLOPT_POST, 1);
 						curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
 						curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-						$result = curl_exec($ch);*/
+						$result = curl_exec($ch);
 						
 						
 											
@@ -3700,7 +3702,7 @@
 						
 			 /// echo $strBody;
 		
-					///  SendEmail("Alivemeter Team", "support@alivemeter.com", $to, $strSubject, $strBody);
+					 SendEmail("Alivemeter Team", "support@alivemeter.com", $to, $strSubject, $strBody);
 					}
 					
 					
@@ -3901,68 +3903,35 @@
 				
 				$rows =$this->db->update_array(Diet_Exercise, $data2, "selected_date='".date('Y-m-d',strtotime($selected_date))."' and patient_id=".$patient_id." and nutritionist_id=".$nutritionist_id);
 				
-				$user_name=GetValue("select name as col from tbl_users where user_id=".$patient_id, "col");
-				$user_email=GetValue("select user_email as col from tbl_users where user_id=".$patient_id, "col");
-				$doctor_name=GetValue("select doctor_name as col from tbl_doctor where user_id=".$doctor_id, "col");
-				$doctor_email=GetValue("select email as col from tbl_doctor where user_id=".$doctor_id, "col");
+				//$user_name=GetValue("select name as col from tbl_users where user_id=".$patient_id, "col");
+				////$user_email=GetValue("select user_email as col from tbl_users where user_id=".$patient_id, "col");
+				//$doctor_name=GetValue("select doctor_name as col from tbl_doctor where user_id=".$doctor_id, "col");
+				//$doctor_email=GetValue("select email as col from tbl_doctor where user_id=".$doctor_id, "col");
 
-				
-				//$this->Send_Diet_Plan($diet_plan_id,$selected_date,$message,$user_email,$user_name);
-				//$this->Send_Diet_Plan($diet_plan_id,$selected_date,$message,$doctor_email,$doctor_name);
+				 $this->Send_Diet_Plan($diet_plan_id,$nutritionist_id,$patient_id,$selected_date,$message);
+				 
 
 				return $f_receive_message."###".$diet_plan_id;
 	    }
 			
 
-		function Send_Diet_Plan($diet_plan_id,$selected_date,$message,$user_email,$user_name)
+		function Send_Diet_Plan($diet_plan_id,$nutritionist_id,$patient_id,$selected_date,$message)
 	   {
 				
-				$string="";
+						$string="";
 
-						
-						$to = $user_email;
-						$strSubject="Diet Plan Deatils of  ".$selected_date." ".$user_email." ".$user_name;
-						
-						$string=$string."<table width='780px' border='0' cellpadding='0' cellspacing='0'>";
-						$string=$string."<tr>";
-						$string=$string."<td style='border: solid 12px #4ec8c8;'>";
-						$string=$string."<table width='757px' border='0' cellpadding='0' cellspacing='0'>";
-						$string=$string."<tr>";
-						$string=$string."<td style='background-color: #FFF; height: 70px; border-bottom: solid 2px #4ec8c8;'>";
-						$string=$string."<table width='757px' border='0' cellpadding='0' cellspacing='0'>";
-						$string=$string."<tr>";
-						$string=$string."<td style='padding-left: 17px; width: 159px; padding-bottom: 5px;'>";
-						$string=$string."<a href='http://www.alivemeter.com/' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/brandnew.png' alt='' title='' border='0' /></a>";
-						$string=$string."</td>";
-						$string=$string."<td style='padding-right: 20px; padding-top: 10px; text-align: right; display: none;'>";
-						$string=$string."<a href='https://www.facebook.com/pages/Alivemeter/687872857994981' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/facebook.png' alt='' title='' border='0' /></a>&nbsp;<a href='https://twitter.com/@alivemeter' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/twitter.png' alt='' title='' border='0' /></a>&nbsp;";
-						$string=$string."</td>";
-						$string=$string."</tr>";
-						$string=$string."</table>";
-						$string=$string."</td>";
-						$string=$string."</tr>";
-						$string=$string."<tr>";
-						$string=$string."<td style='background-color: #f0f0f0;'>";
-						
-						$string=$string."<table width='757px' border='0' cellpadding='0' cellspacing='0'>";
-						$string=$string."<tr>";
-						$string=$string."<td style='padding: 20px 11px 10px 11px; text-align: justify; margin: 0px;'>";
-						$string=$string."<p style='font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #99cc00; font-weight: bold; line-height: 20px; margin: 0px;'>Hello ".$user_name.",</p>";
-						$string=$string."<p style='font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 20px; padding-top: 10px; margin: 0px;'>Please check diet plan details.</p>";                         
-						
-						$string=$string."</td>";
-						$string=$string."</tr>";
+						 
 
 
 
- $string=$string."<tr><td style='padding:10px;'><div  style='border-bottom: solid 1px #cccccc; font-size: 14px; text-align: left;width:100%;float:left;color:#656565'> <span style='font-weight: bold;'>Sent on :</span> ".date('d-M-Y',strtotime($selected_date))."</div>
+ $string=$string."Following are Diet Plan Details <br/><br/><div  style='border-bottom: solid 1px #cccccc; font-size: 14px; text-align: left;width:100%;float:left;color:#656565'> <span style='font-weight: bold;'>Sent on :</span> ".date('d-M-Y',strtotime($selected_date))."</div>
               <div  style='color:#656565;border-bottom: solid 1px #cccccc; font-size: 14px; text-align: left; padding-bottom: 5px; padding-top:10px;;width:100%;float:left;'>
                 <div style='width:100%;float:left;'>
                   <div style='color:#7ba400;font-weight: bold; font-size: 14px; padding-bottom: 15px;width:100%;float:left;'>Food</div>
                   <div style='width:100%;float:left;'>
                     <div  style='color:#656565;font-weight: bold; width:150px;float:left;'>Time</div>
-                    <div  style='color:#656565;font-weight: bold; width:180px;float:left;'>Food</div>
-                    <div   style='color:#656565;font-weight: bold;float:left;width:150px;'>Portion</div>
+                    <div  style='color:#656565;font-weight: bold; width:173px;float:left;'>Food</div>
+                    <div   style='color:#656565;font-weight: bold;float:left;width:122px;'>Portion</div>
                     <div   style='color:#656565;font-weight: bold;float:left;width:100px;'>Quantity</div>
                     <div   style='color:#656565;font-weight: bold;float:left;width:100px;'>Calories</div>
                   </div>";
@@ -3992,7 +3961,7 @@
                       </div>
                     </div>
                     <div  style='color:#656565;width:150px;float:left;'> ". $receipe_name." </div>
-                    <div   style='color:#656565;width:180px;float:left;padding-left:20px;'> ". $portion." </div>
+                    <div   style='color:#656565;width:130px;float:left;padding-left:20px;'> ". $portion." </div>
                     <div   style='color:#656565;width:100px;float:left;'> ". $qty." </div>
                     <div  style='color:#656565;width:100px;float:left;'> ". $total_cal." </div>
                   </div>";
@@ -4000,7 +3969,7 @@
                   
                    $string=$string." <div  style='padding-top:25px;width:100%;float:left;'>
                     
-                    <div style='color:#656565;width:600px; text-align:right;float:left;'> Total Consumed Calories : </div>
+                    <div style='color:#656565;width:550px; text-align:right;float:left;'> Total Consumed Calories : </div>
                     <div style='color:#656565;float:left;width:100px;'> ". 
 						$total_day_cal=GetValue('select sum(total_cal) as col from tbl_diet_food_plan where diet_plan_id='.$diet_plan_id, 'col')." 
                         cal</div>
@@ -4067,47 +4036,48 @@
                   $string=$string." <div style='padding-top:15px;width:100%;float:left;'>
                     
                     <div style='color:#656565;'> &nbsp; </div>
-                    <div  style='color:#656565;width:610px;float:left;text-align:right;'> Total Burnt Calories : </div>
+                    <div  style='color:#656565;width:540px;float:left;text-align:right;'> Total Burnt Calories : </div>
                     <div  style='color:#656565;float:left;width:100px;'> ". 
 						$total_cal_exe_1." 
                         cal</div>
                   </div> 
                 </div>
               </div>
-               <div style='color:#656565;border:solid 0px red; text-align:left; padding:10px 0; font-weight:normal;width:100%;float:left;'>
+               <div style='color:#656565;border:solid 0px red; text-align:left; padding:10px 0; font-weight:normal;width:100%;float:left;word-wrap: break-word;'>
             	<span style='color:#7ba400;'>Message :</span> ". str_replace('\\','',$message)."
             </div>";
 
 
 
 
-						$string=$string."</td></tr><tr>";
-						$string=$string."<td style='padding: 5px 11px 0px 11px; text-align: justify; margin: 0px;'>";
-						$string=$string."<table width='100%' border='0' cellspacing='0' cellpadding='0'>";
-						$string=$string."<tr>";
-						$string=$string."</tr>";
-						$string=$string."</table>";
-						$string=$string."</td>";
-						$string=$string."</tr>";
-						$string=$string."<tr>";
-						$string=$string."<td style='padding: 25px 11px 25px 11px; text-align: left; margin: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 20px; vertical-align: top;'>";
-						$string=$string."<span style='color: #666666; font-weight: bold; font-size: 13px;'>- The Alivemeter Team</span><br />";
-						$string=$string."</td>";
-						$string=$string."</tr>";
-						$string=$string."</table>";
-						$string=$string."</td>";
-						$string=$string."</tr>";
-						$string=$string."</table>";
-						$string=$string."</td>";
-						$string=$string."</tr>";
-						$string=$string."</table>"; 
-						 
-						$strBody=$string;
-						
-					//echo $strBody;
-					//exit;
-					$to="madhu@jupiterindia.com";
-					SendEmail("Alivemeter Team", "support@alivemeter.com", $to, $strSubject, $strBody);
+				$patient_id = $patient_id;
+				$nutritionist_id = $nutritionist_id;
+				$comment_id = 0;
+				$compose_id = "999999";
+				$accept_id = $diet_plan_id;
+				$comment = $string;
+				$subject = "Diet Plan Details of ".$selected_date;
+				$folderid=$this->get_retrive->RetriveUserInboxID($patient_id);
+				$folder_nut_id=$this->get_retrive->RetriveNutSentID($nutritionist_id);
+
+				$isactive=1;
+				$isdeleted=0;
+				
+				$data = array(
+					'patient_id' => $patient_id,
+					'nutritionist_id' => $nutritionist_id,
+					'compose_id' => $compose_id,
+					'accept_id' => $accept_id,
+					'comment' => $comment,
+					'isactive'=>$isactive,
+					'folderid'=>$folderid,
+					'folder_nut_id'=>$folder_nut_id,
+					'isdeleted' => $isdeleted,
+					'subject'=>$subject,
+					
+				);
+				
+				$this->f_Add_Nut_Comment($data,$comment_id);
 	   }
 			
 			

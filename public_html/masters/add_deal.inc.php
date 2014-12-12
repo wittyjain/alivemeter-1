@@ -107,8 +107,8 @@ input
 </style>
 
 <?php
-$id=""; $deal_id=""; $file=""; $state ="";$state_id=""; $state_name=""; $city="";$city_id=""; $city_name=""; $locality=""; $location=""; $location_id=""; $location_name=""; $deal_category="";  $deal_category_id="";  $deal_category_name=""; $offer=""; $image=""; $title=""; $description=""; $actual_price=""; $cut_price=""; $highlights=""; $highlights1=""; $highlights2=""; $highlights3=""; $highlights4=""; $highlights5=""; $highlights6=""; $highlights7=""; $highlights8=""; $highlights9=""; $deal_terms=""; $deal_terms=""; $deal_terms1=""; $deal_terms2=""; $deal_terms3=""; $deal_terms4=""; $deal_terms5=""; $deal_terms6=""; $deal_terms7=""; $deal_terms8=""; $deal_terms9=""; $location=""; $location1=""; $location2=""; $location3=""; $location4=""; $location5=""; $location6=""; $map=""; $fine_prints=""; $isdeleted="0"; $isactive="1"; $owner_email=""; $vendor=""; $coupon="";
-$meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
+$id=""; $deal_id=""; $file=""; $state ="";$state_id=""; $state_name=""; $city="";$city_id=""; $city_name=""; $locality=""; $location=""; $location_id=""; $location_name=""; $deal_category="";  $deal_category_id="";  $deal_category_name=""; $offer="";  $title=""; $description=""; $actual_price=""; $cut_price=""; $highlights=""; $highlights1=""; $highlights2=""; $highlights3=""; $highlights4=""; $highlights5=""; $highlights6=""; $highlights7=""; $highlights8=""; $highlights9=""; $deal_terms=""; $deal_terms=""; $deal_terms1=""; $deal_terms2=""; $deal_terms3=""; $deal_terms4=""; $deal_terms5=""; $deal_terms6=""; $deal_terms7=""; $deal_terms8=""; $deal_terms9=""; $location=""; $location1=""; $location2=""; $location3=""; $location4=""; $location5=""; $location6=""; $map=""; $fine_prints=""; $isdeleted="0"; $isactive="1"; $owner_email=""; $vendor=""; $coupon="";
+$meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";  $image=""; $image_title=""; $main_img="";  $main_img_title=""; $thumb_img=""; $thumb_img_title="";  $sortby=""; $detail_img=""; $detail_img_title=""; $url_title="";
 ?>
 	<?php
 		if(isset($_GET['cid'])) {
@@ -152,7 +152,61 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
 				}
 			
 			}
+			
+			$main_img = $_FILES['fulUpload1']['name'];
+		$file1=trim(str_replace("'","", $_POST['txtImg1']));
+		if($main_img != "")
+		     {
+				uploadFile('fulUpload1','top_stories/','');
+			 }
+			else {
+				if($file1 == "")
+				{
+					$main_img="noimage.gif";	
+				} else {
+					$main_img = $file1;
+				}
+			
+			}
+			
+			$thumb_img = $_FILES['fulUpload2']['name'];
+		$file2=trim(str_replace("'","", $_POST['txtImg2']));
+		if($thumb_img != "")
+		     {
+				uploadFile('fulUpload2','top_stories/','');
+			 }
+			else {
+				if($file2 == "")
+				{
+					$thumb_img="noimage.gif";	
+				} else {
+					$thumb_img = $file2;
+				}
+			
+			}
+			
+			$detail_img = $_FILES['fulUpload3']['name'];
+		$file3=trim(str_replace("'","", $_POST['txtImg3']));
+		if($detail_img != "")
+		     {
+				uploadFile('fulUpload3','top_stories/','');
+			 }
+			else {
+				if($file3 == "")
+				{
+					$detail_img="noimage.gif";	
+				} else {
+					$detail_img = $file3;
+				}
+			
+			}
+			
+		$image_title = trim(str_replace("'", "'", $_POST['txtHome']));
+		$main_img_title = trim(str_replace("'", "'", $_POST['txtMainImg']));
+		$thumb_img_title = trim(str_replace("'", "'", $_POST['txtThumbImg']));	
+		$detail_img_title = trim(str_replace("'", "'", $_POST['txtDealImg']));	
 		$title = trim(str_replace("'", "'", $_POST['txtTitle']));
+		$url_title = trim(str_replace("'", "''", $_POST['txtUrlTitle']));
 		$vendor = trim(str_replace("'", "'", $_POST['txtVendor']));
 		$description = trim(str_replace("'", "'", $_POST['txtDescription']));
 		$actual_price = trim(str_replace("'", "'", $_POST['txtActual_price']));
@@ -221,7 +275,15 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
 			'deal_category' => $deal_cat_id,
 			'offer' => $offer,
 			'image' => $image,
+			'image_title' => $image_title,
+			'main_img' => $main_img,
+			'main_img_title' => $main_img_title,
+			'thumb_img' => $thumb_img,
+			'thumb_img_title' => $thumb_img_title,
+			'detail_img' => $detail_img,
+			'detail_img_title' => $detail_img_title,
 			'title' => $title,
+			'url_title' => $url_title,
 			'coupon' => $coupon,
 			'vendor'=> $vendor,
 			'description' => $description,
@@ -298,6 +360,7 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
 				while($row = mysql_fetch_assoc($result)) {
 					extract($row);
 					$state=$row['state'];
+					$url_title=$row['url_title'];
 					$city=$row['city'];
 					$locality=$row['locality'];
 					$deal_category=$row['deal_category'];
@@ -335,7 +398,13 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
                     <div class="formcontrol2" style="padding-top:8px;">
                       <input type="text" name="txtTitle" id="txtTitle" value="<?php echo $title;?>" style="width:500px;" />
                     </div>
-                    
+                    <div class="dvFloat">
+                     <div class="formlabel1">
+                      <label class="formlabel1">Url Title<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:4px;">
+                      <input type="text" name="txtUrlTitle" id="txtUrlTitle" value="<?php echo truncate($url_title,20);?>" />
+                    </div>
                     <div class="formlabel1">
                       <label class="formlabel1">Coupon Code<span class="redtxt">*</span> </label>
                     </div>
@@ -350,6 +419,7 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
                     <div class="formcontrol2" style="padding-top:8px;">
                       <input type="text" name="txtVendor" id="txtVendor" value="<?php echo $vendor;?>"  />
                     </div>
+                    
                      <div class="formlabel1">
                       <label class="formlabel1">Category<span class="redtxt">*</span> </label>
                     </div>
@@ -380,16 +450,87 @@ $meta_title=""; $meta_description=""; $meta_keywords="";  $image_url="";
                     
                     <div class="dvFloat">
                     <div class="formlabel1" >
-                      <label class="formlabel1">Image<span class="redtxt">*</span> </label>
+                      <label class="formlabel1">Home Image<span class="redtxt">*</span></label>
                     </div>
                     <div class="formcontrol2" style="padding-top:8px;">
-                     <input type="file" name="fulUpload" id="fulUpload" style="width:35%; float:left;" />
-                      <input type="hidden" name="txtImg" id="txtImg" value="<?php echo $image;?>" />
+                     <input type="file" name="fulUpload" id="fulUpload" style="width:35%; float:left;" />  
+                      <input type="hidden" name="txtImg" id="txtImg" value="<?php echo $image;?>" /> (Size: width:145px height:108px) 
                       <?php if($image !="") { ?>
-                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $image?>"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $image?>"style="width:50px; height:50px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
+                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $image?>" style="float:left;"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $image?>"style="width:40px; height:40px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
                      <?php } ?>
                     </div>
                     </div>
+                    
+                     <div class="formlabel1">
+                      <label class="formlabel1">Home Image Title <span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:8px;">
+                      <input type="text" name="txtHome" id="txtHome" value="<?php echo $image_title;?>"  />
+                    </div>
+                    
+                    
+                    <div class="dvFloat">
+                    <div class="formlabel1" >
+                      <label class="formlabel1">Main Image<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:8px;">
+                     <input type="file" name="fulUpload1" id="fulUpload1" style="width:35%; float:left;" />&nbsp; (Size: width:584px height:333px) 
+                      <input type="hidden" name="txtImg1" id="txtImg1" value="<?php echo $main_img;?>" />
+                      <?php if($main_img !="") { ?>
+                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $main_img?>" style="float:left;"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $main_img?>"style="width:40px; height:40px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
+                     <?php } ?>
+                    </div>
+                    </div> 
+                    
+                     <div class="formlabel1">
+                      <label class="formlabel1">Main Image Title <span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:8px;">
+                      <input type="text" name="txtMainImg" id="txtMainImg" value="<?php echo $main_img_title;?>"  />
+                    </div>
+                    
+                    
+                     <div class="dvFloat">
+                    <div class="formlabel1" >
+                      <label class="formlabel1">Thumb Image<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:8px;">
+                     <input type="file" name="fulUpload2" id="fulUpload2" style="width:35%; float:left;" /> (Size: width:265px height:90px) 
+                      <input type="hidden" name="txtImg2" id="txtImg2" value="<?php echo $main_img;?>" />
+                      <?php if($thumb_img !="") { ?>
+                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $thumb_img?>" style="float:left;"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $thumb_img?>"style="width:40px; height:40px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
+                     <?php } ?>
+                    </div>
+                    </div> 
+                    
+                     <div class="formlabel1">
+                      <label class="formlabel1">Thumb Image Title <span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:8px;">
+                      <input type="text" name="txtThumbImg" id="txtThumbImg" value="<?php echo $thumb_img_title;?>"  />
+                    </div>
+                    
+                    
+                     <div class="dvFloat">
+                    <div class="formlabel1" >
+                      <label class="formlabel1">Deal Detail Image<span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:8px;">
+                     <input type="file" name="fulUpload3" id="fulUpload3" style="width:35%; float:left;" />(Size: width:374px height:202px) 
+                      <input type="hidden" name="txtImg3" id="txtImg3" value="<?php echo $detail_img;?>" />
+                      <?php if($detail_img !="") { ?>
+                 		&nbsp;<a target="_blank" href="<?php echo $strHostName;?>/top_stories/<?php echo $detail_img?>" style="float:left;"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $detail_img?>"style="width:40px; height:40px; border:solid 1px #CCCCCC;"/></a>&nbsp; <a href="javascript:RemoveFile('txtFile');"></a>
+                     <?php } ?>
+                    </div>
+                    </div> 
+                    
+                     <div class="formlabel1">
+                      <label class="formlabel1">Deal Image Title <span class="redtxt">*</span> </label>
+                    </div>
+                    <div class="formcontrol2" style="padding-top:8px;">
+                      <input type="text" name="txtDealImg" id="txtDealImg" value="<?php echo $detail_img_title;?>"  />
+                    </div>
+                    
                      <div class="dvFloat">
                     <div class="formlabel1" >
                       <label class="formlabel1">State<span class="redtxt">*</span> </label>

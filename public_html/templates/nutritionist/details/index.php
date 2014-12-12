@@ -28,6 +28,79 @@ function showNutCancel()
 		document.getElementById('HideNutDivLink').style.display = 'none'; 
 	
 }
+
+function Send_SMS(memberid)
+{
+	document.getElementById("txtMemberIDSMS").value=memberid;
+	Popup.showModal('dvpopup-senssms',null,null,{'screenColor':'#333333','screenOpacity':.6});
+}
+
+var count = "159";
+//Example: var count = "175";
+function limiter(){
+var tex = document.myform.comment.value;
+var len = tex.length;
+if(len > count){
+tex = tex.substring(0,count);
+document.myform.comment.value =tex;
+return false;
+}
+document.myform.limit.value = count-len;
+}
+
+
+
+function SendUserSMS()
+{
+	//alert ("dfdf");
+	
+	if(document.getElementById("comment").value=="")
+	{
+		alert ("Please enter message.");
+		document.getElementById("comment").focus();
+		return false;
+	}
+	
+	nut_sms=document.getElementById("comment").value;
+	member_id=document.getElementById("txtMemberIDSMS").value;
+	//nut_id=document.getElementById("txtNutritionistLogID").value;
+	
+	if (window.XMLHttpRequest)
+	{// for IE7+, Firefox, Chrome, Opera, Safaricodes
+		xmlhttp = new XMLHttpRequest();
+	}
+	else
+	{// code for IE6, IE5
+		xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	
+	xmlhttp.onreadystatechange=function()
+	{
+		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+			{
+				message = xmlhttp.responseText;
+				//alert(message);
+				alert ("SMS sent successfully.");
+		
+	document.getElementById("comment").value="";
+	
+	redirectURL(window.location.href);
+				if(message!="") {
+				///	alert ("duplicate date!");
+					//parent.document.getElementById("dvDailyWater").innerHTML=message;
+				}
+				
+			}
+	}
+	
+	///alert (hostname+"/includes/send_nut_sms.inc.php?nut_sms="+nut_sms+"&member_id="+member_id);
+	
+	 xmlhttp.open("GET",hostname+"/includes/send_nut_sms.inc.php?nut_sms="+nut_sms+"&member_id="+member_id, true);
+	 xmlhttp.send();
+	 
+	
+}
+
 </script>
 
  <link rel="stylesheet" type="text/css" href="<?php echo $strHostName;?>/style/calorie_tabcontent1.css" />
@@ -62,7 +135,14 @@ else
        
 			<?php include "includes/patient_details.inc.php";?>
             
-       
+       <div style="float:left;width:100%;border:solid 0px red">
+			<div style="width:500px;padding-left:120px;padding-bottom:50px;">
+				<div class="dvFloat" style="border:solid 0px red; float:left; text-align:left; margin-bottom:0px; margin-right:3px; padding-left:8px;">
+					<a onClick="javascript:SetScroll(); Send_SMS('<?php echo $converter->decode($_GET['patient_id']) ?>');" style="cursor:pointer; font-size:13px; text-transform:none;padding:8px 30px 8px 30px;background:#666666;color:#fff" >Send SMS</a>
+					
+				</div>
+			</div>
+	   </div>
         <div class="DvFloat">
                     	<div class="DvFloat" style="border: solid 0px #0066CC;">
                         <ul id="countrytabs" class="shadetabs2">
@@ -145,3 +225,54 @@ countries.init();
 
 </script>
 <script>RetriveReocrds_Main('Diet_Plan','dvDietPlan');</script>
+
+
+
+<div id="dvpopup-senssms" style="text-align: center; width: 623px; display: none; position:absolute; margin-top:65px; margin-left:350px; background-color:#fff; padding:10px;">
+      
+             <div style="margin: 0px 0px 0px 600px; position: absolute; text-align:right; float: right"> <a href="javascript:Popup.hide('dvpopup-senssms');" target="_parent" style="text-decoration: none; color: #fff; border: solid 0px #993300;"> <img src="images/close.png" alt="" title="" border="0" /> </a> 
+            </div>
+              
+              <div class="dvFloat">
+              		
+                    <div class="dvFloat" style="padding:4px; background-color:#99cc00; color:#fff; text-align:left;">
+                    	Sens SMS 
+                    </div>
+                    
+                     <div class="dvFloat" style="padding:4px; text-align:left; margin-top:15px;">
+                    	<div style="float:left; width:30%;">Message</div>
+                        <div style="float:left; width:50%;">
+                       
+                       <form name="myform" METHOD=POST>
+<textarea name="comment" id="comment"  wrap="physical" rows="3" cols="40" onkeyup="limiter()"></textarea><br>
+
+<script type="text/javascript">
+document.write("<span style='line-height:30px;'>Character left :</span> <input type='text' name='limit' size='4' style='border:0px; background:none; box-shadow:none; width:220px; float:right;' readonly value="+count+">");
+</script>
+
+ <input type="hidden" name="txtMemberIDSMS" id="txtMemberIDSMS" value="" />
+ 
+ 
+</form>
+
+
+                       
+                      </div>
+                        
+                  </div>
+                
+                              
+                    
+                  
+                    
+                     <div class="dvFloat" style="padding:4px; text-align:left;">
+                    	<div style="float:left; width:30%;">&nbsp;</div>
+                        <div style="float:left; width:50%;"> <a class="button2" style="width:80px; cursor: pointer;" onclick="javascript:SendUserSMS();">Send</a></div>
+                        
+                    </div>
+                
+              
+              </div>
+              
+              
+            </div>

@@ -186,7 +186,7 @@ p
                             </div>
                             
                         </div>
-                        <div class="DvFloat" style="padding-top: 13px;"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $thumb_image;?>" alt="" title="" style="width:638px; height:246px;"></div>
+                        <div class="DvFloat" style="padding-top: 13px;"><img alt="<?php echo $header_title;?>" title="<?php echo $header_title;?>" src="<?php echo $strHostName;?>/top_stories/<?php echo $header_image;?>" alt="" title="" style="width:638px; height:246px;"></div>
                         <div class="DvFloat" style="padding-top: 13px;">
                             <?php echo $description;?>
                         </div>                

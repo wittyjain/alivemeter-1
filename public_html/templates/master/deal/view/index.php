@@ -36,6 +36,7 @@
                               <tr>
                                 <td class="tbl_head" > Vendor </td>
                                  <td class="tbl_head" > Deal Category </td>
+                                 <td class="tbl_head" > Url Title </td>
                                   <td class="tbl_head"> Actual Price </td>
                                    <td class="tbl_head" > Owner Email ID </td>
                                     <td class="tbl_head" > Used Coupon </td>
@@ -47,6 +48,7 @@
                               <tr id="tr_deal_id_<?php echo $get_array['deal_id']*121?>">
                                 <td class="tdborder" ><?php echo $get_array['vendor']?> </td>
                                 <td class="tdborder" ><?php echo $deal_name=GetValue("select deal_cat_name as col from tbl_deal_category where deal_cat_id=".$get_array['deal_category'], "col");?> </td>
+                                <td class="tdborder" ><?php echo $get_array['url_title']?> </td>
                                 <td class="tdborder" ><?php echo $get_array['actual_price']?> </td>
                                 <td class="tdborder" ><?php echo $get_array['owner_email']?> </td>
                                 <td class="tdborder" ><?php echo $used_points=GetValue("SELECT Count(coupon_id) as col from tbl_get_coupon where coupon_id=".$get_array['deal_id'], "col"); ?> </td>

@@ -9,10 +9,10 @@
 	include("get_retrive_records.class.php");	
 	
 	// database constraints defined local
-	define('strLocalhost', 'localhost');
+	/*define('strLocalhost', 'localhost');
 	define('strUsername', 'root');
-	define('strPassword', 'root');
-	define('strDatabaseName', 'alive_db');
+	define('strPassword', '');
+	define('strDatabaseName', 'alivemeter');*/
 	
 	
 	// database constraints defined Online
@@ -23,10 +23,10 @@
 	
 	
 	// database constraints defined Online
-   /*define('strLocalhost', 'localhost');
+   define('strLocalhost', 'localhost');
 	define('strUsername', 'alivemet_user');
 	define('strPassword', '6$EDEgd!y,d=');
-	define('strDatabaseName', 'alivemet_db');*/
+	define('strDatabaseName', 'alivemet_db');
 	
 	// class instance created
 	$db = new db_class;

@@ -2,14 +2,11 @@
 <?php include("gzip_start.php"); ?>
 <?php include("dbinfo.inc.php"); ?>
 <?php
-     //$strHostName  = "http://".$_SERVER['SERVER_NAME']."";
-	
+     $strHostName  = "http://".$_SERVER['SERVER_NAME']."";
 	/*for jupiter asia use 
 	
 	 $strHostName = "http://".$_SERVER['SERVER_NAME']."/alivemeter";*/
 
-	//for sarvesh localhost
-	 $strHostName = "http://".$_SERVER['SERVER_NAME']."/company/public_html";
                         
 	$SiteTitle="Shoppingcart";
 	$strPageTitle = "Alivemeter";

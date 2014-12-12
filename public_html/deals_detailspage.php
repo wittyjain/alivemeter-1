@@ -289,7 +289,7 @@ if(isset($_GET['cateid']))
               <div class="boxd"> <i><?php echo $offer; ?>
                 <span style="font-size: 12px;"></span></i>
                 <div class="boxd_in">
-                  <div class="wd1000 f_l imgs"><img src="<?php echo $strHostName;?>/top_stories/<?php echo $image;?>" width="374" height="202"></div>
+                  <div class="wd1000 f_l imgs"><img  alt="<?php echo $detail_img_title;?>" title="<?php echo $detail_img_title;?>" src="<?php echo $strHostName;?>/top_stories/<?php echo $detail_img;?>" border="" width="374" height="202"></div>
                   <div class="wd1000 f_l shadow"><img src="<?php echo $strHostName;?>/images/deals/deals_details_shadow.png" alt="" title="" border="0" ></div>
                 </div>
               </div>

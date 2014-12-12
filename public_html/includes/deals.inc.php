@@ -95,7 +95,7 @@ $m=0;
 
 <div class="box"> <i><?php echo $offer; ?><br/>
   <span style="font-size: 12px;"></span></span></i>
-  <div class="box_in"> <img src="<?php echo $strHostName;?>/top_stories/<?php echo $row['image'];?>" width="265" height="90" >
+  <div class="box_in"> <img alt="<?php echo $row['thumb_img_title'];?>"  title="<?php echo $row['thumb_img_title'];?>" src="<?php echo $strHostName;?>/top_stories/<?php echo $row['thumb_img'];?>" width="265" height="90" >
     <div class="header" style="border:solid 0px green; height:35px;">
       <h5><?php echo $vendor; ?> </h5>
       <p><?php echo $locality; ?>, <?php echo $city; ?></p>

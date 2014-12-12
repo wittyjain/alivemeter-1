@@ -68,7 +68,11 @@ function SendUserSMS()
 		if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
 			{
 				message = xmlhttp.responseText;
-			
+				alert ("SMS sent successfully.");
+		
+	document.getElementById("comment").value="";
+	
+	redirectURL(window.location.href);
 				if(message!="") {
 				///	alert ("duplicate date!");
 					//parent.document.getElementById("dvDailyWater").innerHTML=message;
@@ -82,11 +86,7 @@ function SendUserSMS()
 	 xmlhttp.open("GET",hostname+"/includes/send_nut_sms.inc.php?nut_sms="+nut_sms+"&member_id="+member_id, true);
 	 xmlhttp.send();
 	 
-	alert ("SMS sent successfully.");
-		
-	document.getElementById("comment").value="";
 	
-	redirectURL(window.location.href);
 }
 
 

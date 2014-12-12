@@ -1,5 +1,4 @@
-//var hostname="http://"+ location.host+"";
-var hostname="http://"+ location.host+"/company/public_html";
+var hostname="http://"+ location.host+"";
 
 function popup(type, obj)
 {

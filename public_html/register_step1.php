@@ -314,7 +314,26 @@
 					  <label class="formlabel">Blood Group</label>
 					</div>
 					<div class="formcontrol">
-					  <input type="text" name="txt_Blood_Group" id="txt_Blood_Group" value="<?php echo $blood_group?>" />
+					  <!--input type="text" name="txt_Blood_Group" id="txt_Blood_Group" value="<?php echo $blood_group?>" /-->
+						<select name="txt_Blood_Group" id="txt_Blood_Group"> 
+						<option value=""  selected>Select</option>   
+						<option value="O+"  <?php echo ($blood_group=="O+") ? "selected" : null;?>>O+</option>
+						<option value="O-" <?php echo ($blood_group=="O-") ? "selected" : null;?>>O-</option>
+						<option value="A+"  <?php echo ($blood_group=="A+") ? "selected" : null;?>>A+</option>
+						<option value="A-" <?php echo ($blood_group=="A-") ? "selected" : null;?>>A-</option>
+						<option value="B+"  <?php echo ($blood_group=="B+") ? "selected" : null;?>>B+</option>
+						<option value="B-" <?php echo ($blood_group=="B-") ? "selected" : null;?>>B-</option>
+						<option value="AB+"  <?php echo ($blood_group=="AB+") ? "selected" : null;?>>AB+</option>
+						<option value="AB-" <?php echo ($blood_group=="AB-") ? "selected" : null;?>>AB-</option>
+						<option value="O-Rh+"  <?php echo ($blood_group=="O-Rh+") ? "selected" : null;?>>O-Rh+</option>
+						<option value="O-Rh-" <?php echo ($blood_group=="O-Rh-") ? "selected" : null;?>>O-Rh-</option>
+						<option value="A-Rh+"  <?php echo ($blood_group=="A-Rh+") ? "selected" : null;?>>A-Rh+</option>
+						<option value="A-Rh-" <?php echo ($blood_group=="A-Rh-") ? "selected" : null;?>>A-Rh-</option>
+						<option value="B-Rh+"  <?php echo ($blood_group=="B-Rh+") ? "selected" : null;?>>B-Rh+</option>
+						<option value="B-Rh-" <?php echo ($blood_group=="B-Rh-") ? "selected" : null;?>>B-Rh-</option>
+						<option value="AB-Rh+"  <?php echo ($blood_group=="AB-Rh+") ? "selected" : null;?>>AB-Rh+</option>
+						<option value="AB-Rh-" <?php echo ($blood_group=="AB-Rh-") ? "selected" : null;?>>AB-Rh-</option>
+						</select>
 					</div>
 				  </div>
 				  <div class="dvFloat formpadding">

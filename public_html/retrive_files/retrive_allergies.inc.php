@@ -32,14 +32,25 @@
 	}
 	$pagingLink = getPagingLinkBackEndFrontEnd_ajax($nume,$page_count,'',$newpagenumber, "Allergies");
 ?>
-
+ <?php if($_SESSION['UserType']=="Doctor" || $_SESSION['UserType']=="MD" || $_SESSION['UserType']=="Nutritionist"){ ?>
+ <style>
+ .tdborder
+ {
+ 	padding:10px 5px;
+	vertical-align: middle;
+	border-bottom:solid 1px #e4e4e4;
+ }
+ </style>
+ <?php } ?>
 <table cellpadding="0" cellspacing="0"  style="width:100%" >
                       <tr>
                         <td class="tbl_head" >Allergic to</td>
                         <td class="tbl_head">Reaction </td>
                         <td class="tbl_head">Status</td>
                         <td class="tbl_head">Last Observed On </td>
+						  <?php if($_SESSION['UserType']!="Doctor" && $_SESSION['UserType']!="MD" && $_SESSION['UserType']!="Nutritionist"){ ?>
                         <td class="tbl_head">Actions</td>
+						<?php } ?>
                       </tr>
                       <?php  while($get_array = mysql_fetch_array( $retrive_Array )){
 					  
@@ -51,6 +62,7 @@
                         <td  class="tdborder" style="padding-left:20px;"><?php echo $get_array['status']?> </td>
                        
                         <td  class="tdborder" style="padding-left:20px;"><?php echo date('d-M-Y',strtotime($get_array['last_observe_date']))?> </td>
+						  <?php if($_SESSION['UserType']!="Doctor" && $_SESSION['UserType']!="MD" && $_SESSION['UserType']!="Nutritionist"){ ?>
                         <td  class="tdborder" style="padding-left:20px;"><table cellpadding="0" cellspacing="0"  style="width:100%" >
                                <?php $imageid=GetValue("select file_path as col from tbl_allergies_gallery where parent_id=".$get_array['allergies_id'], "col"); 
 							   			if($imageid!="")
@@ -84,6 +96,7 @@
                               <td class="SubTd2"><a style="cursor:pointer;" onclick="javascript:Allergies_Delete_By_Id('<?php echo  $converter->encode($get_array['allergies_id'])?>','<?php echo $get_array['allergies_id']*121?>')"><img src="images/register_steps/delete_icon.jpg" alt=""></a></td>
                             </tr>
                           </table></td>
+						  <?php } ?>
                       </tr>
                        <?php  } ?>
                       <?php if($nume=="0") { ?>

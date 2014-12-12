@@ -43,7 +43,7 @@ if (isset($_POST['btnSubmit'])) {
 				$string=$string."<a href='http://www.alivemeter.com/' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/brandnew.png' alt='' title='' border='0' /></a>";
 				$string=$string."</td>";
 				$string=$string."<td style='padding-right: 20px; padding-top: 10px; text-align: right; display: none;'>";
-				$string=$string."<a href='#' target='_blank' style='color: #666666; text-decoration: underline;'><img src='www.alivemeter.com/images/socialmedia/facebook.png' alt='' title='' border='0' /></a>&nbsp;<a href='#' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/twitter.png' alt='' title='' border='0' /></a>&nbsp;<a href='#' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/google_plus.png' alt='' title='' border='0' /></a>&nbsp;<a href='#' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/blog.png' alt='' title='' border='0' /></a>&nbsp;<a href='#' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/youtube.png' alt='' title='' border='0' /></a>";
+				$string=$string."<a href='https://www.facebook.com/pages/Alivemeter/687872857994981' target='_blank' style='color: #666666; text-decoration: underline;'><img src='www.alivemeter.com/images/socialmedia/facebook.png' alt='' title='' border='0' /></a>&nbsp;<a href='https://twitter.com/@alivemete' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/twitter.png' alt='' title='' border='0' /></a>";
 				$string=$string."</td>";
 				$string=$string."</tr>";
 				$string=$string."</table>";
@@ -93,10 +93,10 @@ if (isset($_POST['btnSubmit'])) {
 				$string=$string."</td>";
 				$string=$string."</tr>";
 				$string=$string."<tr>";
-				$string=$string."<td style='padding:15px 15px 0 15px; color:#000000; font-size:13px; line-height:18px;'>We would love to hear from you about your experiences which will help build our product better. Please do write to us on support@aliveemeter.com or share your views on our social pages.</td>";
+				$string=$string."<td style='padding:15px 15px 0 15px; color:#000000; font-size:13px; line-height:18px;'>We would love to hear from you about your experiences which will help build our product better. Please do write to us on support@alivemeter.com or share your views on our social pages.</td>";
 				$string=$string."</tr>";
 				$string=$string."<tr>";
-				$string=$string."<td style='padding:20px 15px 15px 15px; color:#ca1d63; font-size:14px; line-height:18px; font-weight:bold;'><span style='color:#185aac;'>- The Alivemeter Team</span></td>";
+				$string=$string."<td style='padding:20px 15px 15px 15px; color:#ca1d63; font-size:13px; line-height:18px; font-weight:bold;'><span style='color:#666666;'>- The Alivemeter Team</span></td>";
 				$string=$string."</tr>";
 				$string=$string."</table>";
 				

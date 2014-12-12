@@ -32,7 +32,7 @@
 						<label class="description" for="gender">Gender *</label>
 						<span>
 							<select class="element select large" id="gender" name="gender"> 
-								<option value="Select" selected >Select</option> 
+								<option value="" selected >Select</option> 
 								<option value="Male" <?php echo ($userDetails['gender']=="Male") ? "selected" : null;?>>Male</option>
 								<option value="Female" <?php echo ($userDetails['gender']=="Female") ? "selected" : null;?>>Female</option>
 							</select>
@@ -70,7 +70,7 @@
 					<span class = "span">
 						<label class="description" for="marital-status">Marital Status *</label>
 						<select class="element select large" id="marital-status" name="marital-status"> 
-							<option value="Select" selected >Select</option> 
+							<option value="" selected >Select</option> 
 							<option value="Married" <?php echo ($userDetails['marital_status']=="Married") ? "selected" : null;?>>Married</option>
 							<option value="Unmarried" <?php echo ($userDetails['marital_status']=="Unmarried") ? "selected" : null;?> >Unmarried</option>
 						</select>
@@ -108,7 +108,7 @@
 					<span class = "span" style = "width : 250px">
 						<label class="description" for="profession">Profession *</label>
 						<select class="element select" style = "width : 225px" id="profession" name="profession"> 
-							<option value="Select"  selected>Select</option>    
+							<option value=""  selected>Select</option>    
 							<option value="6"  <?php echo ($userDetails['profession_id']=="6") ? "selected" : null;?>>Accountant</option>
 							<option value="18" <?php echo ($userDetails['profession_id']=="18") ? "selected" : null;?>>Advertising/PR/MR/Events</option>
 							<option value="19" <?php echo ($userDetails['profession_id']=="19") ? "selected" : null;?> >Agriculture/Dairy</option>
@@ -191,7 +191,7 @@
 						<label class="description" for="height">Height *</label>	
 						<input id="height" name="height" class="element text small" type="text" maxlength="255" value="<?php echo $userDetails['height'];?>"/> 
 						<select class="element select small" id="height-option" name="height-option">
-							<option value="Select" selected >Select</option> 
+							<option value="" selected >Select</option> 
 							<option value="FT" <?php echo ($userDetails['height_type']=="FT") ? "selected" : null;?>>FT</option>
 							<option value="CM" <?php echo ($userDetails['height_type']=="CM") ? "selected" : null;?>>CM</option>
 						</select>
@@ -207,7 +207,7 @@
 					<span class = "span" style = "width :250px">
 						<label class="description" for="set-goal">Set Goal *</label>
 						<select class="element select" id="set-goal" style = "width :220px" name="set-goal"> 
-							<option value="Select" selected>Select</option>
+							<option value="" selected>Select</option>
 							<option value="7700" <?php echo ($userCalCounter['target_goal']=="7700") ? "selected" : null;?>>Lose 1 kilogram per week</option>
 							<option value="5775" <?php echo ($userCalCounter['target_goal']=="5775") ? "selected" : null;?>>Lose 0.75 kilogram per week</option>
 							<option value="3850" <?php echo ($userCalCounter['target_goal']=="3850") ? "selected" : null;?>>Lose 0.5 kilogram per week</option>
@@ -244,7 +244,7 @@
 					<span class = "span" style = "width :475px">
 						<label class="description" for="daily-activities">How would you describe your normal daily activities? * </label>
 						<select class="element select medium" id="daily-activities" name="daily-activities"> 
-							<option value="Select" selected>Select</option>
+							<option value="" selected>Select</option>
 							<option value="1.25" <?php echo ($userCalCounter['daily_activity']=="1.25") ? "selected" : null;?>>Sedentary(Spend most of the day sitting)</option>
 							<option value="1.35" <?php echo ($userCalCounter['daily_activity']=="1.35") ? "selected" : null;?>>Lightly Active(Spend a good part of the day on your feet)</option>
 							<option value="1.45" <?php echo ($userCalCounter['daily_activity']=="1.45") ? "selected" : null;?>>Moderately Active(Spend a good part of the day some physical activity)</option>
@@ -254,7 +254,7 @@
 					<span class = "span" style = "width :350px">
 						<label class="description" for="workouts">How many times a week do you plan on exercising? *</label>
 						<select class="element select small" id="workouts" name="workouts"> 
-							<option value="Select" selected>Select</option>
+							<option value="" selected>Select</option>
 							<option value="1" <?php echo ($userCalCounter['plan_week']=="1") ? "selected" : null;?>>1</option>
 							<option value="2" <?php echo ($userCalCounter['plan_week']=="2") ? "selected" : null;?>>2</option>
 							<option value="3" <?php echo ($userCalCounter['plan_week']=="3") ? "selected" : null;?>>3</option>
@@ -293,7 +293,7 @@
 						<span class = "span" style = "width : 150px" >
 							<label class="description" for="blood-group">Blood Group </label>
 							<select class="element select medium" id="blood-group" name="blood-group"> 
-								<option value="Select"  selected>Select</option>    
+								<option value=""  selected>Select</option>    
 								<option value="O+"  <?php echo ($userDetails['blood_group']=="O+") ? "selected" : null;?>>O+</option>
 								<option value="O-" <?php echo ($userDetails['blood_group']=="O-") ? "selected" : null;?>>O-</option>
 								<option value="A+"  <?php echo ($userDetails['blood_group']=="A+") ? "selected" : null;?>>A+</option>
@@ -302,6 +302,14 @@
 								<option value="B-" <?php echo ($userDetails['blood_group']=="B-") ? "selected" : null;?>>B-</option>
 								<option value="AB+"  <?php echo ($userDetails['blood_group']=="AB+") ? "selected" : null;?>>AB+</option>
 								<option value="AB-" <?php echo ($userDetails['blood_group']=="AB-") ? "selected" : null;?>>AB-</option>
+								<option value="O-Rh+"  <?php echo ($userDetails['blood_group']=="O-Rh+") ? "selected" : null;?>>O-Rh+</option>
+								<option value="O-Rh-" <?php echo ($userDetails['blood_group']=="O-Rh-") ? "selected" : null;?>>O-Rh-</option>
+								<option value="A-Rh+"  <?php echo ($userDetails['blood_group']=="A-Rh+") ? "selected" : null;?>>A-Rh+</option>
+								<option value="A-Rh-" <?php echo ($userDetails['blood_group']=="A-Rh-") ? "selected" : null;?>>A-Rh-</option>
+								<option value="B-Rh+"  <?php echo ($userDetails['blood_group']=="B-Rh+") ? "selected" : null;?>>B-Rh+</option>
+								<option value="B-Rh-" <?php echo ($userDetails['blood_group']=="B-Rh-") ? "selected" : null;?>>B-Rh-</option>
+								<option value="AB-Rh+"  <?php echo ($userDetails['blood_group']=="AB-Rh+") ? "selected" : null;?>>AB-Rh+</option>
+								<option value="AB-Rh-" <?php echo ($userDetails['blood_group']=="AB-Rh-") ? "selected" : null;?>>AB-Rh-</option>
 							</select>
 						</span>
 						<span class = "span" style = "width : 250px">
@@ -327,13 +335,13 @@
 					</li>
 					<li class="buttons">
 						<input type="hidden" name="form_id" value="936414" />
-						<input id="saveForm" class="submit-button" type="submit" name="submit" value="Submit" />
+						<center><input id="saveForm" class="submit-button" type="submit" name="submit" value="Submit" /></center>
 					</li>						
 				</ul>
 			</form>	
-			<div id="footer"> 
-				Please visit us at <a href="http://www.alivemeter.com">Alivemeter</a>
-			</div>
+			<center><div id="footer"> 
+				Please visit us at <a href="http://www.alivemeter.com">www.alivemeter.com</a>
+			</div></center>
 		</div>
 		<img id="bottom" src="images/bottom.png" alt="">
 	</body>
@@ -344,7 +352,7 @@
 	<label class="description" for="earning-member">Earning Member *</label>
 	<div>
 		<select class="element select small" id="earning-member" name="earning-member"> 
-			<option value="Select" selected >Select</option> 
+			<option value="" selected >Select</option> 
 			<option value="2" <?php echo ($userDetails['earning_member']=="2") ? "selected" : null;?>>YES</option>
 			<option value="1" <?php echo ($userDetails['earning_member']=="1") ? "selected" : null;?>>NO</option>
 		</select>

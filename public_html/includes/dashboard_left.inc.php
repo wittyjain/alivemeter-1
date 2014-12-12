@@ -74,7 +74,7 @@
           </div>
           <?php } ?>
           
-          <?php if($_SESSION['UserType']!="Doctor"  && $_SESSION['UserType']!="Nutritionist"){ ?>
+         
          
           <?php if($dir=="health/allergies") { ?>
           <div class="dvFloat">
@@ -85,7 +85,8 @@
             <div style="float:left; padding:0px 0px 10px 0px;"> <a href="<?php echo $strHostName;?>/page.php?dir=health/allergies"><img src="<?php echo $strHostName;?>/images/nutritionist/allergies.jpg" alt=""></a> </div>
           </div>
           <?php } ?>
-          
+
+           
            <?php if($dir=="health/family_history") { ?>
           <div class="dvFloat">
             <div style="float:left; padding:0px 0px 50px 0px;"> <a href="<?php echo $strHostName;?>/page.php?dir=health/family_history"><img src="<?php echo $strHostName;?>/images/nutritionist/family_history_h.jpg" alt=""></a> </div>
@@ -97,5 +98,5 @@
           <?php } ?>
           
           
-          <?php } ?>
+          
         </div>

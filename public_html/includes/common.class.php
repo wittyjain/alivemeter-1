@@ -79,6 +79,7 @@
 	define('Pincode','tbl_pincode');
 	define('Customized_Data','tbl_customized_data');
 	define('Daily_Report_ShowHide','tbl_daily_report_show_hide'); 
+	define('Mobile','tbl_mobile_verify'); 
 	
 	
 	

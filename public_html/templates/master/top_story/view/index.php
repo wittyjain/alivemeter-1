@@ -35,6 +35,7 @@
                   		<table cellpadding="0" cellspacing="0"  style="width:100%;float:left;" >
                               <tr>
                                 <td class="tbl_head" style="width:35%;"> Title </td>
+                                 <td class="tbl_head" > Url Title </td>
                                 <td class="tbl_head" style="width:20%;"> Category </td>
                                 <td class="tbl_head" style="width:10%; "> Sort By </td>
                                 <td class="tbl_head" style="width:15%; text-align:center; padding-left:0px;">Actions</td>
@@ -43,6 +44,7 @@
                               <?php  while($get_array = mysql_fetch_array( $retrive_Array )){?>
                               <tr id="tr_top_story_<?php echo $get_array['cover_story_id']*121?>">
                                 <td class="tdborder" style="padding-left:20px;"><?php echo $get_array['title']?> </td>
+                                  <td class="tdborder" ><?php echo $get_array['url_title']?> </td>
                                   <td class="tdborder" style="padding-left:20px;"><?php echo $cat_name=GetValue("select category_name as col from tbl_category where category_id=".$get_array['category_id'], "col");?>  </td>
                                     <td class="tdborder" style="padding-left:0px; text-align:center;"><?php echo $get_array['sortby']?> </td>
                                 <td class="tdborder" style="padding-left:10px;">

@@ -14,7 +14,7 @@ jQuery(document).ready(function() {
                 <?php 
 					$i=0;
 					$i=$i+1;
-				   $query = "SELECT * FROM ".Deal." WHERE deal_id <> 0 order by sortby limit 5";
+				   $query = "SELECT * FROM ".Deal." WHERE deal_id <> 0 order by sortby desc limit 5";
 					//echo $query;
 					$result = mysql_query($query);
 					if($result != "") {
@@ -34,7 +34,7 @@ jQuery(document).ready(function() {
                    <div class="offerdiv"> <?php echo $offer;?> <span style="font-size: 18px;"></span></div>
               
                   	<div  style="background-image: url(images/deals_leftsite_arrow.png); background-position: right top; background-repeat: no-repeat; width: 15px; height: 333px; z-index: 999999; position: absolute; float: right; border: solid 0px #990000; margin-left: 569px;"></div>
-                    <div class="bx-content_Left"> <img src="<?php echo $strHostName;?>/top_stories/<?php echo $row['image'];?>" style="width:584px; height:333px; z-index: -1; position:relative;" /></div>
+                    <div class="bx-content_Left"> <img  alt="<?php echo $row['main_img_title'];?>"  title="<?php echo $row['main_img_title'];?>"  src="<?php echo $strHostName;?>/top_stories/<?php echo $row['main_img'];?>" style="width:584px; height:333px; z-index: -1; position:relative;" /></div>
                     <div class="bx-content_Right">
                       <div class="bx-content_text">
                         <div class="dvFloat" style="border:solid 0px red; height:220px;">
@@ -77,7 +77,7 @@ jQuery(document).ready(function() {
                   <?php 
 				  	$i=0;
 					$i=$i+1;
-				   $query1= "SELECT * FROM ".Deal." WHERE deal_id <> 0 order by sortby limit 5";
+				   $query1= "SELECT * FROM ".Deal." WHERE deal_id <> 0 order by sortby desc limit 5";
 					//echo $query;
 					$result1 = mysql_query($query1);
 					if($result1 != "") {

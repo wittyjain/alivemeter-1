@@ -152,7 +152,11 @@
                   </div>
                    <?php  
 				   $total_cal_exe_1="";
-						$query = "SELECT * FROM  ".Diet_Exercise." where isactive=1 and isdeleted=0 and diet_plan_id=".$get_array['id']." order by time_period";
+						$query = "SELECT * FROM  ".Diet_Exercise." where isactive=1 and isdeleted=0 and diet_plan_id=".$get_array['id']." and time_period='Morning'";
+
+						$query .= "Union All SELECT * FROM  ".Diet_Exercise." where isactive=1 and isdeleted=0 and diet_plan_id=".$get_array['id']." and time_period='Afternoon' ";
+
+						$query .= "Union All SELECT * FROM  ".Diet_Exercise." where isactive=1 and isdeleted=0 and diet_plan_id=".$get_array['id']." and time_period='Evening'";
 						//echo $query;
 							$result = mysql_query($query);							
 							if($result != "") {	

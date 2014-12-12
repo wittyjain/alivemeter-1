@@ -56,8 +56,10 @@ $family_history_count=$family_history_count+$family_history_count_na;
                   <div class="dvFloat formpadding1" id="dvFamily_History" name="dvFamily_History" style="border-bottom:0px;">
                     &nbsp;
                   </div>
-                  <div class="dvFloat formpadding1" style="padding-top:0px;">
+                  <div class="dvFloat"  style="display:<?php if($_SESSION['UserType']!="Doctor"  && $_SESSION['UserType']!="MD" && $_SESSION['UserType']!="Nutritionist"){ echo "";} else { echo "none"; } ?>"> 
+      <div class="dvFloat formpadding1" style="padding-top:0px;">
                     <div class="formlabel1" style="width: 500px;">
+					 <?php if($_SESSION['UserType']!="Doctor" && $_SESSION['UserType']!="MD" && $_SESSION['UserType']!="Nutritionist"){ ?>
                      <label class="formlabel1" style="border:solid 0px red; width:500px; padding:15px 13px 0px 13px;">
                       		 <?php if($dir=="health/family_history") { ?>
                         	<a  onClick="showfform();" style="cursor:pointer"><img src="images/nutritionist/add_to_list.jpg" alt="" title="" border="0" style="float:left; margin-right:10px;" id="ShowFDivLink"></a>
@@ -72,6 +74,9 @@ $family_history_count=$family_history_count+$family_history_count_na;
                         <?php } ?>
                         <h5 style="color:red; display:none;  width:200px; float:left; font-size:13px;" id="dvEditFamily"> (You are editing selected list.)</h5>
                       </label>
+					    <?php } else { ?>
+           					 <h2 class="Tab_Title" style="border:solid 0px green; width:110px; float:left;">View list</h2>
+					 <?php } ?>
                     </div>
                     <div class="formcontrol2" style="display: none;"> &nbsp; </div>
                   </div>
@@ -152,7 +157,7 @@ $family_history_count=$family_history_count+$family_history_count_na;
 						</div>
 					 </div>
                   <?php } ?>
-                  
+                   </div>
                   </div>
                 </div>
                 

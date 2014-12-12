@@ -1,3 +1,10 @@
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{HTTP_HOST} !^www.alivemeter.com$ [NC]
+RewriteRule ^(.*)$ http://www.alivemeter.com/$1 [L,R=301]
+
+RewriteCond %{HTTP_HOST} ^180\.149\.242\.20
+RewriteRule (.*) http://www.alivemeter.com/$1 [R=301,L]
 
 ## EXPIRES CACHING ##
 <IfModule mod_expires.c>

@@ -11,7 +11,7 @@
     $registeredUserQuery = UserModel::getRegisteredUsersIdName($profileId, $emailId, $mobileNumber);
     while($row = mysql_fetch_array($registeredUserQuery, MYSQL_ASSOC))
     {
-	$firstName = $row["name"];
+	      $firstName = $row["name"];
         $lastName = $row["lastname"];
         $profileId = $row["user_profile_id"];
         echo "<div class = 'registeredUserDetails'>";
