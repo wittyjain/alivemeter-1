@@ -1,0 +1,268 @@
+<script type="text/javascript" src="<?php echo $strHostName?>/js/health_steup_validation.js"></script>
+<script type="text/javascript" src="<?php echo $strHostName?>/js/health_steup_insert_retrive.js"></script>
+<script type="text/javascript" src="<?php echo $strHostName;?>/lib/jquery-1.10.1.min.js"></script>
+<?php
+$cond=""; $name=""; $mobile=""; $email=""; $profile_id=""; 
+	
+	
+if(isset($_SESSION['UserNutID']))
+{
+	$user_id=$_SESSION['UserNutID'];
+}
+else
+{
+	$user_id="0";
+}
+
+
+if(isset($_SESSION['UserType']))
+{
+	$user_type=$_SESSION['UserType'];
+}
+else
+{
+	$user_type="0";
+}
+
+
+
+	
+	if(isset($_POST['txt_UserName']) || isset($_GET['name']))
+	{
+		if(isset($_POST['txt_UserName'])) 
+		{
+			$name=trim(str_replace("'", "''", $_POST['txt_UserName']));
+			
+		}
+		if(isset($_GET['name'])) 
+		{
+			$name=$_GET['name'];
+		}
+		if($name!="")
+		{
+			$cond=$cond." and name like '%".$name."%'";
+		}
+	}
+	
+	
+	if(isset($_POST['txt_MobileNo']) || isset($_GET['mobile']))
+	{
+		if(isset($_POST['txt_MobileNo'])) 
+		{
+			$mobile=trim(str_replace("'", "''", $_POST['txt_MobileNo']));
+			
+			
+		}
+		if(isset($_GET['mobile'])) 
+		{
+			$mobile=$_GET['mobile'];
+		}
+		
+		if($mobile!="")
+		{
+			$cond=$cond." and mobile like '%".$mobile."%'";
+		}
+	}
+	
+	if(isset($_POST['txt_EmailId']) || isset($_GET['email']))
+	{
+		if(isset($_POST['txt_EmailId'])) 
+		{
+			$email=trim(str_replace("'", "''", $_POST['txt_EmailId']));
+		
+		}
+		if(isset($_GET['email'])) 
+		{
+			$email=$_GET['email'];
+		}
+		
+		
+		
+		if($email!=""){
+			$cond=$cond." and user_email like '%".$email."%'";
+		}
+	}
+	
+	if(isset($_POST['txt_ProfileId'])  || isset($_GET['profile_id']))
+	{
+		if(isset($_POST['txt_ProfileId'])) 
+		{
+			$profile_id=trim(str_replace("'", "''", $_POST['txt_ProfileId']));
+			
+		}
+		if(isset($_GET['profile_id'])) 
+		{
+			$profile_id=$_GET['profile_id'];
+		}
+		
+		
+		if($profile_id!=""){
+			$cond=$cond." and user_profile_id like '%".$profile_id."%'";
+		}
+	}
+
+
+$page=1;$page_count=25;$newpagenumber="2";$retrive_Array=array();$get_array=array();
+  $retrive_Array=$get_retrive->GetNutPatients($page_count, $cond);
+  $nume=$get_retrive->GetNutPatients_Count($cond);
+?>
+<section>
+  <div class="top_ou">
+    <div class="top_in">
+      <div class="top">
+        <div class="cal_12" style="padding-top: 15px;">
+          <h1 class="f_red" style="text-align: left; font-size: 18px;">CLIENT PROFILE</h1>
+          <div class="cal_12" style="border: solid 0px #0066CC;">
+            <form enctype="multipart/form-data" method="post">
+            <div class="DvFloat">
+              <div style="float:left; width:350px; border:solid 0px red;">
+                <div class="DvFloat">
+                  <div style="float: left; padding-top: 6px; width:75px;" class="f_grey">User Name</div>
+                  <div style="float: left; padding-left: 10px;">
+                    <input type="text" name="txt_UserName" id="txt_UserName" value="<?php echo $name;?>" style="width: 200px;" />
+                  </div>
+                </div>
+                
+                
+              </div>
+              <div style="float:left; width:350px; border:solid 0px red;">
+              <div class="DvFloat" style="padding-top: 0px; text-align: left;">
+                  <div style="float: left; padding-top: 6px; width:75px; text-align: left;" class="f_grey">User Id</div>
+                  <div style="float: left; padding-left: 10px;">
+                    <input type="text" name="txt_ProfileId" id="txt_ProfileId" value="<?php echo $profile_id;?>" style="width: 200px;" />
+                  </div>
+                </div>
+                <div class="DvFloat" style="display:none;">
+                  <div style="float: left; padding-top: 6px; padding-left: 10px;width:75px;" class="f_grey">Mobile No</div>
+                  <div style="float: left; padding-left: 10px;">
+                    <input type="text" name="txt_MobileNo" id="txt_MobileNo" value="<?php echo $mobile;?>" style="width: 200px;" />
+                  </div>
+                </div>
+               <div class="DvFloat" style="display:none;">
+                  <div style="float: left; padding-top: 6px; padding-left: 10px; width:75px;" class="f_grey">Email Id</div>
+                  <div style="float: left; padding-left: 10px;">
+                    <input type="text" name="txt_EmailId" id="txt_EmailId" value="<?php echo $email;?>" style="width: 200px;" />
+                  </div>
+                </div>
+                
+              <div class="DvFloat">
+                <div style="float: left; padding-bottom: 10px; padding-top: 10px; padding-left: 85px;  width: 210px; border: solid 0px #99FF00;">
+                  <div style=" width:55px; height:20px; float:left"><input type="reset" name="btnReset" id="btnReset" class="buttonreset" value="Reset" style="text-align:center"/></div>
+                  <div style=" width:80px; height:20px; float:left;"><input type="submit" name="btnSearch" id="btnSearch" class="buttonsearch" value="Search" style="text-align:center"/></div>
+                </div>
+              </div>
+              </div>
+              
+              
+            </div>
+            </form>
+            <div class="adviceonline_md">
+              <div class="DvFloat">
+                <div class="DvFloat" style="border-bottom: solid 0px #e1e1e1; border-top: solid 1px #e1e1e1; margin-top: 16px; padding: 5px 0px;">
+                  <div style="width: 40%; float: left; padding-top: 10px;" class="f_grey"><span style="font-weight: bold; font-size: 15px;">Total Records Found :</span> <span class="f_red" style="font-size: 15px; font-weight: bold;"><?php echo $nume;?></span></div>
+                  <div style="width: 40%; float: right; padding-top: 10px; text-align: right; display:none;" class="f_grey">
+                    <div style="float: left; padding-right: 5px; text-align: right; width: 315px; padding-top: 6px;"><span style="font-weight: bold;">Page Size</span></div>
+                    <div style="float: right; padding-left: 5px;">
+                      <select id="cmb_Date" name="cmb_Date" class="existing_event" tabindex="1" style="width: 2px;">
+                        <option>1</option>
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                        <option>6</option>
+                        <option>7</option>
+                        <option>8</option>
+                        <option>9</option>
+                        <option selected>10</option>
+                        <option>11</option>
+                        <option>12</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="DvFloat">
+                  <table width="100%" border="0" cellpadding="0" cellspacing="0" style="padding-bottom:20px;">
+                    <tr>
+                      <td class="greeybg4">User ID</td>
+                      <td class="greeybg2">Name</td>
+                      
+                      <td class="greeybg4">Gender</td>
+					  <td class="greeybg4">Member Count</td>
+                    
+                     
+                      <td class="greeybg7">Action</td>
+                    </tr>
+                    <tr>
+                      <td class="f_white" colspan="6" style="height: 5px;"></td>
+                    </tr>
+                      <?php 
+					  
+	
+						if($nume !="0")
+						{
+							$newpagenumber=($nume/$page_count);
+							if($newpagenumber==""){$newpagenumber="0";}else{$newpagenumber=$newpagenumber+1;}
+							$newpagenumber=round($newpagenumber);
+							if($page > $newpagenumber)
+							{
+								$newpagenumber=1;
+							}
+							else
+							{
+								$newpagenumber="";
+							}
+						}
+						$pagingLink = getPagingLinkBackEndFrontEnd($nume,$page_count,'dir=nutritionist/client_details&name='.$name.'&mobile='.$mobile.'&email='.$email.'&profile_id='.$profile_id.'',$newpagenumber,$strHostName."/page_doctor.php");
+						
+					  ?>
+                      <?php  while($get_array = mysql_fetch_array( $retrive_Array )){
+					  	$compose_id=GetValue("select compose_id as col from ".Nut_Patients." where patient_id=".$get_array['user_id'], "col");
+
+						$member_count=GetValue("select count(*) as col from ".Users." where patient_id=".$get_array['user_id'], "col");
+					  ?>
+                       <tr>
+                                  <td class="lightgreeybg4"><?php echo $get_array['user_profile_id']; ?></td>
+                                  <td class="lightgreeybg2"><a href="<?php echo $strHostName;?>/page_doctor.php?dir=nutritionist/details&patient_id=<?php echo $converter->encode($get_array['user_id'])?>&compose_id=<?php echo $converter->encode($compose_id);?>&parent_id=<?php echo $converter->encode($get_array['user_id']);?>"><?php echo $get_array['name']; ?></a> </td>
+                                
+                                  <td class="lightgreeybg4"><?php echo $get_array['gender']; ?> </td>
+								  <td class="lightgreeybg4"><?php echo $member_count; ?> </td>
+                                
+                                
+                                  <td class="lightgreeybg7"><a href="<?php echo $strHostName;?>/page_doctor.php?dir=nutritionist/details&patient_id=<?php echo $converter->encode($get_array['user_id'])?>&compose_id=<?php echo $converter->encode($compose_id);?>&parent_id=<?php echo $converter->encode($get_array['user_id']);?>"><img src="images/nutritionist_action_icon.jpg" alt="" title="" border="0"></a></td>
+                                </tr>
+                    
+                    <tr>
+                      <td class="f_white" colspan="6" style="height: 5px;"></td>
+                    </tr>
+                      <?php  } ?>
+                     
+                     <?php if ($nume=="0" || $nume=="") { ?>
+                     	<tr>
+                      <td class="f_white" colspan="6" style="height: 5px; color:red; text-align:center; padding-top:15px;">Sorry! No clients are available.</td>
+                    </tr>
+                     <?php } ?>
+                     
+                 </table>
+                </div>
+                <?php if ($page_count < $nume) { ?>
+                <div class="DvFloat" style="padding:0px 0 20px 0;">
+                  <div style="text-align: center; padding: 10px 0px; width: 967px; float: left; border: solid 0px #000000;">
+                    <div class="pagination_md">
+                      <div style="width: 22px; float: left; border: solid 0px #0066FF; padding: 0px; margin:-5px 0px 0px 0px; display:none;"><a href="#"><img src="images/prev_md_paging.png" alt="" title="" border="0" /></a></div>
+                      <div style="width: 917px; float: left; border: solid 0px #006600;">
+                      	<?php echo $pagingLink ?>
+                       </div>
+                      <div style="width: 22px;  float: left; border: solid 0px #0066FF; padding: 0px; margin:-5px 0px 0px 0px; display:none;"><a href="#"><img src="images/next_md_paging.png" alt="" title="" border="0" /></a></div>
+                    </div>
+                  </div>
+                </div>
+                <?php } ?>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

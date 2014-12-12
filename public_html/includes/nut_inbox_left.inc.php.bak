@@ -1,0 +1,86 @@
+<?php 
+if(isset($_GET['status']))
+{
+	$status =$_GET['status'];
+}
+else
+{
+	$status="";
+}
+
+if(isset($_GET['folderid']))
+{
+	$folderid =$converter->decode($_GET['folderid']);
+}
+else
+{
+	$folderid="0";
+}
+
+
+if(isset($_SESSION['UserNutID']))
+{
+	$UserID=$_SESSION['UserNutID'];
+}
+
+$inbox_id=$get_retrive->RetriveNutInboxID($UserID);
+$sent_id=$get_retrive->RetriveNutSentID($UserID);
+$trash_id=$get_retrive->RetriveNutTrashID($UserID);
+
+
+$inbox_count = $get_retrive->GetMails_NutCount($inbox_id,$UserID);
+$sent_count = $get_retrive->GetMails_NutCount($sent_id,$UserID);
+$trash_count = $get_retrive->GetMails_NutCount($trash_id,$UserID); 
+
+		
+	$dir=""; $menus_sel=""; 
+if(isset($_GET['dir']))
+{
+	$dir=$_GET['dir'];
+}
+
+?>
+<div class="Inbox_td_left">
+                <table cellpadding="0" cellspacing="0" style="width:100%">
+                  <tr>
+                    <td style="text-align:left; width:10%;padding:0px 10px 0px 0px"><img src="images/inbox_mail.jpg" alt="" align="absmiddle" /></td>
+                    <td style="text-align:left; width:70%; vertical-align:middle"><a href="<?php echo $strHostName;?>/page_doctor.php?dir=nutritionist/inbox&status=inbox&folderid=<?php echo $converter->encode($inbox_id)?>">Inbox &nbsp; (<?php echo $inbox_count;?>) </a></td>
+                    <td style="text-align:left; width:10%; vertical-align:middle "></td>
+                  </tr>
+                  
+                  <tr>
+                    <td style="text-align:left; width:10%;padding:5px 0px"><img src="images/sent_item_icon.jpg" alt="" align="absmiddle" /></td>
+                    <td style="text-align:left; width:70%;vertical-align:middle"><a href="<?php echo $strHostName;?>/page_doctor.php?dir=nutritionist/view_mails&status=sent&folderid=<?php echo $converter->encode($sent_id)?>">Sent Items (<?php echo $sent_count;?>)</a></td>
+                    <td style="text-align:left; width:10%;vertical-align:middle "></td>
+                  </tr>
+                  
+                  <tr>
+                    <td style="text-align:left; width:10%;padding:5px 0px"><img src="images/trash_icon.jpg" alt="" align="absmiddle" /></td>
+                    <td style="text-align:left; width:7570;vertical-align:middle"><a href="<?php echo $strHostName;?>/page_doctor.php?dir=nutritionist/inbox&status=trash&folderid=<?php echo $converter->encode($trash_id)?>">Trash (<?php echo $trash_count;?>)</a></td>
+                    <td style="text-align:left; width:10%;vertical-align:middle "></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:left; width:10%;padding:5px 0px"><img src="images/folder_icon.jpg" alt="" align="absmiddle" /></td>
+                    <td style="text-align:left; width:70%;vertical-align:middle">My Folders</td>
+                    <td style="text-align:left; width:10%;vertical-align:middle "></td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:left; width:10%;padding:5px 0px"></td>
+                    <td style="text-align:left; width:70%;vertical-align:middle">
+                         <ul style="list-style-type:square; line-height:30px;">
+                          <?php $FolderArray=$get_retrive->GetFolders($UserID) ;  ?>	  
+                              <?php  while($folder = mysql_fetch_array( $FolderArray )){?>
+	                            <li><a href="<?php echo $strHostName;?>/page_doctor.php?dir=nutritionist/inbox&status=<?php echo $folder['name'];?>&folderid=<?php echo $converter->encode($folder['id'])?>" style="cursor:pointer;"><?php echo $folder['name']?>
+								
+								<?php 
+									$folder_count =  $get_retrive->GetMails_NutCount($folder['id'],$UserID); 
+								?>
+								(<?php echo $folder_count;?>)</a>&nbsp;
+								</li>
+                              <?php }?>
+                          </ul>
+                      </td>
+                    <td style="text-align:left; width:10%;vertical-align:middle "></td>
+                  </tr>
+                </table>
+              </div>

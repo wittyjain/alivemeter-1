@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Include css stylesheet -->
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+	<!-- List of categories -->
+    <div id = 'header'>
+    	<h1>Welcome</h1>
+  	</div>
+    <div id = 'check-create-user-btn'>
+      <div id = 'registered-btn'>
+        <p>Already Registered?</p>
+      </div>
+      <div id = 'user-details' style = display:none>
+        <form name="input" method="post">
+            Profile ID: <input type="text" id="profileId" name="profileId">
+            Email ID: <input type="text" id="emailId" name="emailID">
+            Mobile Number: <input type ="number" id="mobile" name="mobileNo">
+            <input type="submit" id = 'get-user-details' value="Get User Details">
+        </form>
+      </div>
+      <div id = 'register-now-btn'>
+        <p>Register Now</p>
+      </div>
+  	<div>
+
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/app.js"></script>
+
+</html>

@@ -1,0 +1,57 @@
+<script type="text/javascript" src="<?php echo $strHostName?>/js/health_steup_insert_retrive.js"></script>
+<script type="text/javascript" src="<?php echo $strHostName?>/js/calories_steup3_validation.js"></script>
+<div class="DvFloat" style="padding-top:10px;">
+                    <div class="calorie_gb_box">
+                      <div class="DvFloat">
+                        <div  style="margin:0 auto; text-align:center">
+                          <div class="DvFloat" style="line-height:14px;padding:5px 0px 0px 0px;"><span style="text-transform:uppercase; color:#666666; font-size:14px;">Calories<br>
+                            Remaining</span></div>
+                          <div class="DvFloat"><span style="text-transform:uppercase; color:#666666; font-size:36px;"  id="DvCalorieRemaining">&nbsp;</span></div>
+                          <div class="DvFloat" style="padding:10px 0px 0px 0px"><span style=" color:#666666; font-size:14px;">Calories</span></div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="calorie_gb_box">
+                      <div  style="margin:0 auto; text-align:center">
+                        <div class="DvFloat" style="line-height:14px;padding:5px 0px 15px 0px;"><span style="text-transform:uppercase; color:#666666; font-size:14px;">GOAL</span></div>
+                        <div class="DvFloat" ><span style="text-transform:uppercase; color:#666666; font-size:36px;" id="DvGoal">
+                        	&nbsp;
+                        </span></div>
+                        <div class="DvFloat" style="padding:10px 0px 0px 0px"><span style=" color:#666666; font-size:14px;">Calories</span></div>
+                      </div>
+                    </div>
+                    <div class="calorie_grey_box">
+                      <div  style="margin:0 auto; text-align:center">
+                        <div class="DvFloat" style="line-height:14px;padding:5px 0px 15px 0px;"><span style="text-transform:uppercase; color:#666666; font-size:14px;">FOOD</span></div>
+                        <div class="DvFloat"><span style="text-transform:uppercase; color:#666666; font-size:36px;" id="DvFood">
+                        	&nbsp;
+                        </span></div>
+                        <div class="DvFloat" style="padding:10px 0px 0px 0px"><span style=" color:#666666; font-size:14px;">Calories</span></div>
+                      </div>
+                    </div>
+                    <div class="calorie_grey_box">
+                      <div style="position:absolute; margin-top:50px;margin-left:-20px;"><img src="images/calorie_setup/minus.jpg" alt=""></div>
+                      <div  style="margin:0 auto; text-align:center">
+                        <div class="DvFloat" style="line-height:14px;padding:5px 0px 15px 0px;"><span style="text-transform:uppercase; color:#666666; font-size:14px;">EXERCISE</span></div>
+                        <div class="DvFloat" ><span style="text-transform:uppercase; color:#666666; font-size:36px;" id="DvExercise">
+                        	&nbsp;
+                        </span></div>
+                        <div class="DvFloat" style="padding:10px 0px 0px 0px"><span style=" color:#666666; font-size:14px;">Calories</span></div>
+                      </div>
+                    </div>
+                    <div class="calorie_grey_box">
+                      <div style="position:absolute; margin-top:50px;margin-left:-20px;"><img src="images/calorie_setup/equal.jpg" alt=""></div>
+                      <div  style="margin:0 auto; text-align:center">
+                        <div class="DvFloat" style="line-height:14px;padding:5px 0px 15px 0px;"><span style="text-transform:uppercase; color:#666666; font-size:14px;">NET</span></div>
+                        <div class="DvFloat" ><span style="text-transform:uppercase; color:#666666; font-size:36px;" id="DvNet">
+                        	&nbsp;
+                        </span></div>
+                        <div class="DvFloat" style="padding:10px 0px 0px 0px"><span style=" color:#666666; font-size:14px;">Calories</span></div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+<script type="text/javascript">
+GetDailyUpdates();
+</script>

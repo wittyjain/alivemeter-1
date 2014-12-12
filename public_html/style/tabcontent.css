@@ -1,0 +1,643 @@
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs
+{
+	padding: 10px 0px 10px 0px;
+	margin: 0px;
+	border: solid 0px #CC3399;
+	width: 99%;
+	color:#000000;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:13px;
+}
+.TabContentDetails{border: 0px solid #990066; width: 100%; float: left; margin-bottom: 1em;  background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	background-image: url(../images/grey_tab_line.png);  background-repeat:no-repeat; background-position:right; width:150px;
+}
+.shadetabs li:hover
+{
+	display: inline;	
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	background-image: url(../images/green_tab_line.png);  background-repeat:no-repeat; background-position:right;
+}
+.shadetabs li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	background-image: url(../images/green_tab_line.png);  background-repeat:no-repeat; background-position:right;
+}
+.shadetabs li:last-child
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;
+}
+
+.shadetabs li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	padding: 8px 10px;
+	border: 0px solid #778;
+	color: #FFFFFF;margin:0px 10px 0px 0px;
+	
+}
+
+.shadetabs li a:visited
+{
+	color: #FFFFFF;
+}
+
+.shadetabs li a:hover
+{
+	text-decoration: none;
+	color: #FFFFFF;
+	 background-color:#99cc01;
+}
+
+.shadetabs li a.selected
+{ 
+	position: relative;
+	top: 0px;background-color:#99cc01;
+	
+}
+
+
+.shadetabs li a.selected:hover
+{ 
+	text-decoration: none;
+}
+
+.tabcontent
+{
+	display:none;
+	float: left;
+	width: 99%; color:#000000
+}
+.tabcontent1
+{
+	display:none;
+	float: left;
+	width: 98%; color:#000000
+}
+
+@media print
+{
+.tabcontent
+{
+	display:block !important;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs1
+{
+	padding: 0px 0px 10px 0px;
+	margin: 0px;
+	border-: solid 1px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:14px;  
+}
+.TabContentDetails1{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto;margin:0px;}
+.shadetabs1 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs1 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	padding: 8px 10px;
+	border: 0px solid #778;
+	color: #666666;margin:0px 12px 0px 0px;color:#666
+	
+}
+
+.shadetabs1 li a:visited
+{
+	color:#666
+}
+
+.shadetabs1 li a:hover
+{
+	text-decoration: none;
+	color: #FFFFFF;
+	 background-color:#009999;
+}
+
+.shadetabs1 li a.selected
+{ 
+	position: relative;
+background-color:#009999;
+	color:#fff
+}
+
+
+.shadetabs1 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent1
+{
+	display:block !important;color:#666
+}
+
+}
+/**/
+
+
+
+
+
+
+
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabsa
+{
+	padding: 10px 0px 10px 0px;
+	margin: 0px;
+	border: solid 0px #CC3399;
+	width: 99%;
+	color:#000000;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:13px;
+}
+.TabContentDetailsa{border: 0px solid #990066; width: 100%; float: left; margin-bottom: 1em;  background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabsa li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	background-image: url(../images/grey_tab_line.png);  background-repeat:no-repeat; background-position:right; width:150px;
+}
+.shadetabsa li:hover
+{
+	display: inline;	
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	background-image: url(../images/green_tab_line.png);  background-repeat:no-repeat; background-position:right;
+}
+.shadetabsa li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	background-image: url(../images/green_tab_line.png);  background-repeat:no-repeat; background-position:right;
+}
+.shadetabsa li:last-child
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;
+}
+
+.shadetabsa li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	padding: 8px 10px;
+	border: 0px solid #778;
+	color: #FFFFFF;margin:0px 10px 0px 0px;
+	
+}
+
+.shadetabsa li a:visited
+{
+	color: #FFFFFF;
+}
+
+.shadetabsa li a:hover
+{
+	text-decoration: none;
+	color: #FFFFFF;
+	 background-color:#99cc01;
+}
+
+.shadetabsa li a.selected
+{ 
+	position: relative;
+	top: 0px;background-color:#99cc01;
+	
+}
+
+
+.shadetabsa li a.selected:hover
+{ 
+	text-decoration: none;
+}
+
+.tabcontenta
+{
+	display:none;
+	float: left;
+	width: 99%; color:#000000
+}
+.tabcontent1
+{
+	display:none;
+	float: left;
+	width: 98%; color:#000000
+}
+
+@media print
+{
+.tabcontent
+{
+	display:block !important;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs1a
+{
+	padding: 0px 0px 10px 0px;
+	margin: 0px;
+	border-: solid 1px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:14px;  
+}
+.TabContentDetails1a{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 10px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs1a li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1a li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1a li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1a li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs1a li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	padding: 8px 10px;
+	border: 0px solid #778;
+	color: #666666;margin:0px 12px 0px 0px;color:#666
+	
+}
+
+.shadetabs1a li a:visited
+{
+	color:#666
+}
+
+.shadetabs1a li a:hover
+{
+	text-decoration: none;
+	color: #FFFFFF;
+	 background-color:#c02c3e;
+}
+
+.shadetabs1a li a.selected
+{ 
+	position: relative;
+background-color:#c02c3e;
+	color:#fff
+}
+
+
+.shadetabs1a li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent1a
+{
+	display:block !important;color:#666
+}
+
+}
+/**/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.shadetabs15
+{
+	padding: 10px 0px 10px 0px;
+	margin: 0px;
+	border: solid 0px #CC3399;
+	width: 99%;
+	color:#000000;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:13px;
+}
+.TabContentDetails15{border: 0px solid #990066; width: 98.5%; float: left; padding: 10px 10px 30px 10px;  background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs15 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	 width:150px;
+}
+.shadetabs15 li:hover
+{
+	display: inline;	
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	
+}
+.shadetabs15 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	
+}
+.shadetabs15 li:last-child
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;
+}
+
+.shadetabs15 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	padding: 8px 10px;
+	border: 0px solid #778;
+	color: #FFFFFF;margin:0px 10px 0px 0px;
+	
+}
+
+.shadetabs15 li a:visited
+{
+	color: #FFFFFF;
+}
+
+.shadetabs15 li a:hover
+{
+	text-decoration: none;
+	color: #FFFFFF;
+	 background-color:#99cc01;
+}
+
+.shadetabs15 li a.selected
+{ 
+	position: relative;
+	top: 0px;background-color:#99cc01;
+	
+}
+
+
+.shadetabs15 li a.selected:hover
+{ 
+	text-decoration: none;
+}
+
+.tabcontent15
+{
+	display:none;
+	float: left;
+	width: 99%; color:#000000
+}
+
+@media print
+{
+.tabcontent15
+{
+	display:block !important;
+}
+
+}
+
+
+
+
+
+
+
+
+
+
+.calorie_tab {
+	padding: 0px;
+	margin: 0px 0px 0px 0px;
+	width: 560px;
+	border:solid 0px red;
+	list-style-type: none;
+	font-size:14px;
+	text-align: left;
+	font-family:"myriad_web_proregular";
+}
+.calorie_tab li {
+	display: inline;
+	width: 112px;
+	margin:0px;
+	padding:0px;
+	float:left;
+	text-align:center;
+	text-transform:uppercase;
+}
+.calorie_tab li a {
+	position: relative;
+	top: 0px;
+	color: #666666;
+	text-decoration: none;
+	width: 112px;
+	margin-top:5px 0px px 0px;
+	padding: 5px 0px 10px 0px;
+	float:left;
+	text-align:center;
+	background-image: url(../images/calorie_setup/tab_down_green_arrow.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+/*.calorie_tab li a:visited
+{
+	color: #FFF;
+}*/
+
+.calorie_tab li a:hover {
+	text-decoration: none;
+	color: #fff;
+	background-image: url(../images/calorie_setup/tab_down_green_arrow_h.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	margin-top:5px 0px px 0px;
+	padding: 5px 0px 10px 0px;
+	width: 112px;
+	float:left;
+	text-align:center
+}
+.calorie_tab li a.selected { /*selected main tab style */
+	position: relative;
+	top: 0px;
+	color: #fff;
+	background-image: url(../images/calorie_setup/tab_down_green_arrow_h.jpg);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	text-decoration: none;
+	width: 112px;
+	margin-top:5px 0px px 0px;
+	padding: 5px 0px 10px 0px;
+	float:left;
+	text-align:center;
+	font-weight:bold
+}
+/*.calorie_tab li a.selected
+{ selected main tab style 
+	background-image: url(../images/shadeactive.png);
+	border-bottom-color: solid 0px white;
+}*/
+
+.calorie_tab li a.selected:hover { /*selected main tab style */
+	text-decoration: none;
+}
+.calorie_tabcontent {
+	display:none;
+	float: left;
+	width: 698px;
+}
+ @media print {
+.hw-workstabcontent1 {
+	display:block !important;
+}
+}
+
+
+
+select
+{
+ border-radius: 0 0 0px 0px;
+  -moz-border-radius: 0 0 0px 0px;
+  -webkit-border-radius: 0 0 0px 0px;
+}
