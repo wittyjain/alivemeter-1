@@ -4120,7 +4120,6 @@ function Health_Problem_Details_Retrive_By_Id(id, eid)
 	xmlhttp.send();
 }
 
-
 function SetData_Helth_Problem(iNumber,data,i)
 {
 	document.getElementById("txt_HP_Problem_"+iNumber).value=data.records[i].problem;

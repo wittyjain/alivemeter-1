@@ -1080,14 +1080,12 @@ $("#txtBreakfast_Search").bind('click', function(){
         datatype: "html",
         success: function(result)
         {
-            //alert(result);
-            //$("#txtBreakfast_Search").append(result);
             $("#ui-id-1").css("display", "block");
             $("#ui-id-1").css("width", "306px");
             $("#ui-id-1").css("top", "937px");
             $("#ui-id-1").css("left", "507px");
+            $("#ui-id-1").empty();
             $( "#ui-id-1" ).append(result);
-
         }
     })
 })
