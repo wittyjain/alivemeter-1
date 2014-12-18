@@ -1,3 +1,0 @@
-[23-Apr-2014 12:05:57] PHP Warning:  mysql_connect() [<a href='function.mysql-connect'>function.mysql-connect</a>]: Too many connections in /home/jupitera/public_html/nutrion/includes/db.class.php on line 54
-[23-Apr-2014 12:06:07] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: Too many connections in /home/jupitera/public_html/nutrion/manage/includes/get_name.inc.php on line 10
-[23-Apr-2014 12:06:07] PHP Warning:  mysql_query() [<a href='function.mysql-query'>function.mysql-query</a>]: A link to the server could not be established in /home/jupitera/public_html/nutrion/manage/includes/get_name.inc.php on line 10
