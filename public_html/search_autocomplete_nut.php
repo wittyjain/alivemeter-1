@@ -1,30 +1,60 @@
 <?php include("includes/common.inc.php"); ?>
 <?php
-	
+
 //sleep( 3 );
-// no term passed - just exit early with no response
 if (empty($_GET['term'])) exit ;
 $q = strtolower($_GET["term"]);
 if(trim($q)==""){exit;}
+// no term passed - just exit early with no response
 // remove slashes if they were magically added
 if (get_magic_quotes_gpc()) $q = stripslashes($q);
 
 $result = array();
-
 $type=$_GET['type'];
-//Alert ($type);
+//array_push($result, array("id"=>"ABC", "label"=>"ABC", "value" => strip_tags("ABC")));
 
-//$search=$_GET['search'];
 $String="";
 
+if(isset($_SESSION['UserID']))
+{
+	$user_id=$_SESSION['UserID'];
+}
+else
+{
+	$user_id=0;
+}
+
 if($type=="Receipe"){
-	
-	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '".$q."%' order by name";
+	$query = "SELECT recipe_ids FROM tbl_user_food_history where user_id=".$user_id." ";
+	$user_food_history = mysql_query($query);
+    $query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '".$q."%' order by name";
 	$primary_result = mysql_query($query);
 	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '% ".$q."%' order by name";
 	$secondary_result = mysql_query($query);
 	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '%".$q."%' and name NOT LIKE '".$q."%' and name NOT LIKE '% ".$q."%' order by name";
 	$tertiary_result = mysql_query($query);
+	if ($user_food_history != "") {
+		$rowcount = mysql_num_rows($user_food_history);
+		if ($rowcount > 0 && count($result)<80) {
+			$row = mysql_fetch_array($user_food_history);
+			$user_search_array = array();
+			$user_search_array = explode (',',$row['recipe_ids']);
+			for($i=0; $i<count($user_search_array); $i++){
+			 	$id = $user_search_array[$i];
+			 	$query = "SELECT name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and id = ".$user_search_array[$i]." ";
+			 	$recipe_name = mysql_query($query);
+			 	if(mysql_num_rows($recipe_name) > 0){
+			 		$recipe = mysql_fetch_array($recipe_name);
+			 		$key = $recipe['name'];
+			 		//if (strpos(strtolower($key), $q) !== false) {
+						array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			  		//}
+			 		if (count($result) > 80)
+						break;
+			 	}
+			}
+		}
+	}
 	if ($primary_result != "") {
 		$rowcount = mysql_num_rows($primary_result);
 		if ($rowcount > 0 && count($result)<80) {

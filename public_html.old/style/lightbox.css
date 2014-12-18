@@ -1,0 +1,234 @@
+/*body
+{
+	margin:0px;
+	padding:0px;
+	background-color: #FFF;
+}
+
+.dvFloat
+{
+	width:98%;
+	float:left;
+	border:solid 0px red;
+}*/
+
+.dvImg
+{
+	float: left;
+	padding: 10px 15px 10px 15px;
+	text-align: center;
+	width: 225px;
+	height: 163px;
+	border: solid 0px yellow;
+}
+
+
+.dvtxt
+{
+	float: left;
+	padding: 0px 15px 0px 15px;
+	text-align: center;
+	width: 225px;
+	border: solid 0px yellow;
+}
+
+
+.ThumpImg
+{
+	width: 225px;
+	height: 163px;
+	border: solid 1px #cdcdcd;
+}
+
+.dvTitle
+{
+	text-align:left;
+	padding:0px 20px 0px 20px;
+	float:left;
+	font-size:18px;
+	font-family:Arial;
+	color:White;
+	text-decoration:underline;
+	font-weight:bold;
+}
+
+/*a.pageno:link
+{
+	color: #28699e;
+	text-decoration: none;
+}
+
+a.pageno:visited
+{
+	color: #28699e;
+	text-decoration: none;
+}
+
+a.pageno:hover
+{
+	color: #ee8d01;
+	text-decoration: none;
+}
+
+.selected
+{
+	color: #ee8d01;
+	text-decoration: none;
+}
+*/
+#lightbox
+{
+	position: absolute;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	text-align: center;
+	line-height: 0;
+}
+
+#lightbox img
+{
+	width: auto;
+	height: auto;
+}
+
+#lightbox a img
+{
+	border: none;
+}
+
+#outerImageContainer
+{
+	position: relative;
+	background-color: #f1f1f1;
+	width: 250px;
+	height: 250px;
+	margin: 0 auto;
+}
+
+#imageContainer
+{
+	padding: 0px;
+}
+
+#loading
+{
+	position: absolute;
+	top: 40%;
+	left: 0%;
+	height: 25%;
+	width: 100%;
+	text-align: center;
+	line-height: 0;
+}
+
+#hoverNav
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+	z-index: 10;
+}
+
+#imageContainer>#hoverNav
+{
+	left: 0;
+}
+
+#hoverNav a
+{
+	outline: none;
+}
+
+#prevLink, #nextLink
+{
+	width: 49%;
+	height: 100%;
+	background-image: url(data:image/gif;base64,AAAA); /* Trick IE into showing hover */ 
+	display: block;
+}
+
+#prevLink
+{
+	left: 0;
+	float: left;
+}
+
+#nextLink
+{
+	right: 0;
+	float: right;
+}
+
+#prevLink, #prevLink:visited
+{
+	background: url(../images/prevlabel.gif) left 15% no-repeat;
+}
+
+#nextLink, #nextLink:visited
+{
+	background: url(../images/nextlabel.gif) right 15% no-repeat;
+}
+
+#imageDataContainer
+{
+	font: 10px Verdana, Helvetica, sans-serif;
+	background-color: #ffffff;
+	margin: 0 auto;
+	line-height: 1.4em;
+	overflow: auto;
+	width: 100%;
+}
+
+#imageData
+{
+	padding:0 10px;
+	color: #f1f1f1;
+}
+
+#imageData #imageDetails
+{
+	width: 70%;
+	float: left;
+	text-align: left;
+}
+
+#imageData #caption
+{
+	font-weight: bold;
+}
+
+#imageData #numberDisplay
+{
+	display: block;
+	clear: left;
+	padding-bottom: 1.0em;
+}
+
+#imageData #bottomNavClose
+{
+	width: 66px;
+	float: right;
+	padding-bottom: 0.7em;
+	outline: none;
+}
+
+#overlay
+{
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: 90;
+	width: 100%;
+	height: 500px;
+	background-color: #606060;
+}
+
+select
+{
+ border-radius: 0 0 0px 0px;
+  -moz-border-radius: 0 0 0px 0px;
+  -webkit-border-radius: 0 0 0px 0px;
+}

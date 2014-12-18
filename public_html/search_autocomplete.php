@@ -16,14 +16,43 @@ $type=$_GET['type'];
 
 //$search=$_GET['search'];
 $String="";
-
+if(isset($_SESSION['UserID']))
+{
+	$user_id=$_SESSION['UserID'];
+}
+else
+{
+	$user_id=0;
+}
 if($type=="Receipe"){
-        $query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '".$q."%' order by name";
+	if($q==""){
+		array_push($result, array("id"=>"ABC", "label"=>"ABC", "value" => strip_tags("ABC")));
+	}
+	$query = "SELECT recipe_ids FROM tbl_user_food_history where user_id=".$user_id." ";
+	$user_food_history = mysql_query($query);
+    $query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '".$q."%' order by name";
 	$primary_result = mysql_query($query);
 	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '% ".$q."%' order by name";
 	$secondary_result = mysql_query($query);
 	$query = "SELECT id,name FROM tbl_recipe WHERE isdeleted = 0 and approved=1 and name LIKE '%".$q."%' and name NOT LIKE '".$q."%' and name NOT LIKE '% ".$q."%' order by name";
 	$tertiary_result = mysql_query($query);
+	if ($user_food_history != "") {
+		$rowcount = mysql_num_rows($user_food_history);
+		if ($rowcount > 0 && count($result)<80) {
+			$row = mysql_fetch_array($user_food_history);
+			$user_search_array = array();
+			$user_search_array = explode (',',$row);
+			for($i=0; $i<count($user_search_array), $i++){
+			 	$id = $user_search_array[i];
+			 	$key = $user_search_array[i];
+			 	array_push($result, array("id"=>$id, "label"=>$key, "value" => strip_tags($key)));
+			 	if (count($result) > 80)
+					break;
+			}
+		}
+	}
+	else
+		array_push($result, array("id"=>"ABC", "label"=>"ABC", "value" => strip_tags("ABC")));
 	if ($primary_result != "") {
 		$rowcount = mysql_num_rows($primary_result);
 		if ($rowcount > 0 && count($result)<80) {

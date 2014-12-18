@@ -1,4 +1,4 @@
-var hostname="http://"+ location.host+"";
+var hostname="http://"+ location.host+"/alivemeter/public_html";
 
 function popup(type, obj)
 {

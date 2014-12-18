@@ -12,30 +12,30 @@
 </style>
 
 <script>
+
 $(function() {
     $("#txtBreakfast_Search").autocomplete({
         source: $("#txtHostName").val()+"/search_autocomplete_nut.php?type=Receipe",
-        minLength: 2,
+         minLength: 3,
         select: function( event, ui ) {
             if(ui.item.id=="0" || ui.item.id=="")
             {
-                 
+                //SetRecipeId(2438);
             }
             else
             {
+                //alert(ui.item.id);
                 SetRecipeId(ui.item.id);
 					
             }
         }
-        
     });
-    
 });
 
 $(function() {
     $("#txtLunch_Search").autocomplete({
         source: $("#txtHostName").val()+"/search_autocomplete_nut.php?type=Receipe",
-        minLength: 2,
+        minLength: 3,
         select: function( event, ui ) {
             if(ui.item.id=="0" || ui.item.id=="")
             {
@@ -55,7 +55,7 @@ $(function() {
 $(function() {
     $("#txtSnacks_Search").autocomplete({
         source: $("#txtHostName").val()+"/search_autocomplete_nut.php?type=Receipe",
-        minLength: 2,
+        minLength: 3,
         select: function( event, ui ) {
             if(ui.item.id=="0" || ui.item.id=="")
             {
@@ -74,7 +74,7 @@ $(function() {
 $(function() {
     $("#txtDinner_Search").autocomplete({
         source: $("#txtHostName").val()+"/search_autocomplete_nut.php?type=Receipe",
-        minLength: 2,
+        minLength: 3,
         select: function( event, ui ) {
             if(ui.item.id=="0" || ui.item.id=="")
             {

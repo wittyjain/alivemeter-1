@@ -121,14 +121,17 @@ if($Receipe_id!="0" && $Receipe_id!="")
 	WHERE parent_id =$receipe
 	Group by Parent_id";	
 				mysql_query($sql);
-				echo $recipe;
-				$sql="Select * from tbl_user_food_history t where t.user_id = $user_id ";
-				mysql_query($sql);
-				if(mysql_num_rows($sql) > 0){
-					echo "User has stored some food items";
+				echo "Recipe is ".$receipe." and user id is ".$user_id;
+				$sql="Select * from tbl_user_food_history t where t.user_id = ".$user_id." ";
+				$result = mysql_query($sql);
+				if(mysql_num_rows($result) > 0){
+					$recipeId = ",".$receipe;
+					$sql = "UPDATE tbl_user_food_history t SET t.recipe_ids=CONCAT (t.recipe_ids, '".$recipeId."') WHERE t.user_id = ".$user_id." ";
+					mysql_query($sql);
 				}
 				else{
-					echo "No food items stored";
+					$sql = "INSERT INTO tbl_user_food_history (`history_id`, `user_id`, `recipe_ids`) VALUES (NULL, ".$user_id." , ".$receipe.")";
+					mysql_query($sql);
 				}
 				//echo $sql;
 			}

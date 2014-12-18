@@ -1,0 +1,100 @@
+<?php include("common.inc.php"); ?>
+<?php
+$value=0; 
+
+//Alert($user_id); 
+$created_date=date('Y-m-d h:i:s'); 
+ 
+if(isset($_GET['value'])){$value=$_GET['value'];}
+
+
+if(isset($_SESSION['UserID'])){$user_id=$_SESSION['UserID'];}
+
+$user_mail=GetValue("select user_email as col from tbl_users where user_id=".$user_id, "col");
+
+$register_name=GetValue("select name as col from tbl_users where user_id=".$user_id, "col");
+$cpn_name=GetValue("select title as col from  tbl_deal  where deal_id=".$value."", "col");
+$cpn_code=GetValue("select coupon as col from  tbl_deal  where deal_id=".$value."", "col");
+
+$rowcount=GetValue("select Count(*) as col from ".Get_Coupon."  where coupon_id=".$value." and user_id=".$user_id."", "col");
+//Alert ($rowcount);
+
+	if ($value > 0) {
+			//Alert($rowcount);
+			if ($rowcount <= 0) {
+				
+				$data1 = array(
+					'user_id'=> $user_id,
+					'coupon_id'=>$value,
+					'created_date'=>$created_date,
+					'isactive'=>1,
+					'isdeleted'=>0,
+					
+				);
+				$cpn_id =$db->insert_array(Get_Coupon, $data1);
+				
+				$to = $user_mail;
+				$from = "Alivemeter";
+				$strSubject = "Your Alivemeter Coupon - ".$cpn_name;
+				
+				$string=$string."<table width='780px' border='0' cellpadding='0' cellspacing='0'>";
+				$string=$string."<tr>";
+				$string=$string."<td style='border: solid 12px #4ec8c8;'>";
+				$string=$string."<table width='757px' border='0' cellpadding='0' cellspacing='0'>";
+				$string=$string."<tr>";
+				$string=$string."<td style='background-color: #FFF; height: 70px; border-bottom: solid 2px #4ec8c8;'>";
+				$string=$string."<table width='757px' border='0' cellpadding='0' cellspacing='0'>";
+				$string=$string."<tr>";
+				$string=$string."<td style='padding-left: 17px; width: 159px; padding-bottom: 5px;'>";
+				$string=$string."<img src='$strHostName/images/brandnew.png' alt='' title='' border='0' />";
+				$string=$string."</td>";
+				$string=$string."<td style='padding-right: 20px; padding-top: 10px; text-align: right; display: none;'>";
+				$string=$string."<a href='https://www.facebook.com/pages/Alivemeter/687872857994981' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/facebook.png' alt='' title='' border='0' /></a>&nbsp;<a href='https://twitter.com/@alivemeter' target='_blank' style='color: #666666; text-decoration: underline;'><img src='http://www.alivemeter.com/images/socialmedia/twitter.png' alt='' title='' border='0' /></a>&nbsp;";
+				$string=$string."</td>";
+				$string=$string."</tr>";
+				$string=$string."</table>";
+				$string=$string."</td>";
+				$string=$string."</tr>";
+				$string=$string."<tr>";
+				$string=$string."<td style='background-color: #f0f0f0;'>";
+				
+				$string=$string."<table width='757px' border='0' cellpadding='0' cellspacing='0'>";
+				$string=$string."<tr>";
+				$string=$string."<td style='padding: 20px 11px 10px 11px; text-align: justify; margin: 0px;'>";
+				$string=$string."<p style='font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #99cc00; font-weight: bold; line-height: 20px; margin: 0px;'>Hey ".$register_name.",</p>";
+				$string=$string."<p style='font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 20px; padding-top: 10px; margin: 0px;'>Thank you for member with Alivemeter !</p>";                         
+				
+				$string=$string."<p style='font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 20px; padding-top: 10px; margin: 0px;'>Get this coupon for discount. Your Coupon Code is  ".$cpn_code.".</p>";                   
+				$string=$string."</td>";
+				$string=$string."</tr>";
+				$string=$string."<tr>";
+				$string=$string."<td style='padding: 25px 11px 25px 11px; text-align: left; margin: 0px; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 13px; color: #666666; line-height: 20px; vertical-align: top;'>";
+				$string=$string."<span style='color: #666666; font-weight: bold; font-size: 13px;'>- The Alivemeter team</span><br />";
+				
+				$string=$string."</td>";
+				$string=$string."</tr>";
+				$string=$string."</table>";
+				$string=$string."</td>";
+				$string=$string."</tr>";
+				$string=$string."</table>";
+				$string=$string."</td>";
+				$string=$string."</tr>";
+				$string=$string."</table>"; 
+				
+				$strBody=$string;
+			///	 echo $strBody;
+				//return;
+			SendEmail("Alivemeter Team", "support@alivemeter.com", $user_mail, $strSubject, $strBody);
+				
+				
+				
+			}
+		
+	}
+	
+	
+	
+	
+
+?>
+

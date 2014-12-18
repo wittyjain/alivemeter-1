@@ -937,13 +937,6 @@ function Add_Option_Time_Exercise(type,dropdown1,dropdown2)
 	
 }
 
-
-
-
-
-
-
-
 function GetTotalFood(date)
 {
 /// alert ("total food");
@@ -1080,7 +1073,24 @@ function GetDailyUpdates(date)
 	 xmlhttp.send();
 }
 
+$("#txtBreakfast_Search").bind('click', function(){
+    $.ajax({ 
+        type: "POST",
+        url: "search_autocomplete_blank_nut.php?type=Receipe",
+        datatype: "html",
+        success: function(result)
+        {
+            //alert(result);
+            //$("#txtBreakfast_Search").append(result);
+            $("#ui-id-1").css("display", "block");
+            $("#ui-id-1").css("width", "306px");
+            $("#ui-id-1").css("top", "937px");
+            $("#ui-id-1").css("left", "507px");
+            $( "#ui-id-1" ).append(result);
 
+        }
+    })
+})
 
 function addwater()
 {
