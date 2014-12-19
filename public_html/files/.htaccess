@@ -1,5 +1,0 @@
-Options +FollowSymLinks
-RewriteEngine on
-
-RewriteRule ^stories/(.*)/(.*) top_stories_details.php?cid=$2&url_code=$1
-RewriteRule ^deals/(.*)/(.*) deals_detailspage.php?cid=$1
