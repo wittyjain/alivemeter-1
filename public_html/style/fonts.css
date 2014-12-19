@@ -1,0 +1,40 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+
+@font-face {
+    font-family: 'myriad_web_proregular';
+    src: url('../fonts/myriad-web-pro-webfont.eot');
+    src: url('../fonts/myriad-web-pro-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/myriad-web-pro-webfont.woff') format('woff'),
+         url('../myriad-web-pro-webfont.ttf') format('truetype'),
+         url('../myriad-web-pro-webfont.svg#myriad_web_proregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'FuturaMdBTMedium';
+    src: url('../fonts/futura_md_bt_medium.eot');
+    src: url('../fonts/futura_md_bt_medium.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/futura_md_bt_medium.woff') format('woff'),
+         url('../fonts/futura_md_bt_medium.ttf') format('truetype'),
+         url('../fonts/futura_md_bt_medium.svg#FuturaMdBTMedium') format('svg');
+		 font-weight:normal;
+		 font-style:normal;
+}
+
+@font-face{font-family: 'WebRupee';
+src: url('../fonts/WebRupee.V2.0.eot');
+src: local('../fonts/WebRupee'), 
+	url('../fonts/WebRupee.V2.0.ttf') format('truetype'),  
+	url('../fonts/WebRupee.V2.0.woff') format('woff'), 
+	url('../fonts/WebRupee.V2.0.svg') format('svg'); 
+font-weight:normal; font-style:normal;}
+
+.WebRupee {font-family:'WebRupee';}
+html>body .WebRupee {margin-right:2px;}
+html>body .WebRupee {*margin-right:0;} 

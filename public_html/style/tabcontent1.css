@@ -1,0 +1,97 @@
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs1
+{
+	padding: 0px;
+	margin: 0px;
+	border: solid 0px #CC3399;
+	font: 14px Arial, Helvetica, sans-serif;
+	list-style-type: none;	
+	text-align: left; /*set to left, center, or right to align the menu as desired*/
+}
+
+
+.shadetabs1 li
+{
+	display: inline;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	border: solid 0px #993300;
+	width: 323px;
+	border: 0px solid #dedede;
+	background-image: url(../images/quality_experts_tab.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+	padding: 13px 0px 13px 0px;
+}
+
+.shadetabs1 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	padding: 13px 99px 13px 88px;
+	margin: 0px 0px 0px 0px;
+	font-size: 14px;
+	color: #666;
+	width: 322px;
+}
+
+/*.shadetabs1 li a:visited
+{
+	color: #FFF;
+}*/
+
+.shadetabs1 li a:hover
+{
+	text-decoration: none;
+	color: #FFFFFF;
+	background-image: url(../images/quality_experts_selecttab.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+
+.shadetabs1 li a.selected
+{ /*selected main tab style */
+	position: relative;
+	top: 1px;
+	
+	color: #FFFFFF;
+	background-image: url(../images/quality_experts_selecttab.png);
+	background-repeat: no-repeat;
+	background-position: center bottom;
+}
+
+/*.shadetabs1 li a.selected
+{ selected main tab style 
+	background-image: url(../images/shadeactive.png);
+	border-bottom-color: solid 0px white;
+}*/
+
+.shadetabs1 li a.selected:hover
+{ /*selected main tab style */
+	text-decoration: none;
+}
+
+.tabcontent1
+{
+	display:none;
+	float: left;
+	width: 100%;
+}
+
+@media print
+{
+.tabcontent1
+{
+	display:block !important;
+}
+}
+
+
+select
+{
+ border-radius: 0 0 0px 0px;
+  -moz-border-radius: 0 0 0px 0px;
+  -webkit-border-radius: 0 0 0px 0px;
+}
