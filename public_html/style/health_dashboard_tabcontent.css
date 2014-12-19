@@ -1,0 +1,1623 @@
+.shadetabs
+{
+
+	margin: 0px;
+	border: solid 0px #CC3399;
+	width: 99%;
+	font-family: 'myriad_web_proregular';
+	font-size: 12px;
+	list-style-type: none;
+	text-transform:uppercase;
+	text-align: left; /*set to left, center, or right to align the menu as desired*/
+}
+
+.shadetabs li
+{
+	display: inline;
+	margin: 0px;
+	padding: 0px;
+	border: solid 0px #993300;
+}
+
+.shadetabs li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+
+	border: 0px solid #778;
+	color: #FFFFFF;width:150px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs li a:visited
+{
+	color: #FFFFFF;
+}
+
+.shadetabs li a:hover
+{
+text-decoration: none;
+
+	border: 0px solid #778;
+	color: #FFFFFF;width:150px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs li a.selected
+{ /*selected main tab style */
+	position: relative;
+	border: 0px solid #778;
+	color: #FFFFFF;width:150px;
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+/*.shadetabs li a.selected
+{ selected main tab style
+	background-image: url(../images/shadeactive.png);
+	border-bottom-color: white;
+} */
+
+.shadetabs li a.selected:hover
+{ /*selected main tab style */
+	text-decoration: none;
+}
+
+.tabcontent
+{
+	display:none;
+	float: left;
+	width: 100%;
+}
+
+@media print
+{
+.tabcontent
+{
+	display:block !important;
+}
+}
+
+
+
+
+
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs1
+{
+	
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails1{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs1 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs1 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+
+.shadetabs1 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs1 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs1 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs1 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent1
+{
+	display:block !important;color:#fff
+}
+
+}
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs2
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails2{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs2 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs2 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs2 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs2 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs2 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs2 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs2 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs2 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs2 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs2 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent2
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs3
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails3{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs3 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs3 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs3 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs3 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs3 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs3 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs3 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs3 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs3 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs3 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent3
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs4
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails4{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs4 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs4 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs4 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs4 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs4 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs4 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs4 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs4 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs4 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs4 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent4
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs5
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails5{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs5 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs5 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs5 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs5 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs5 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs5 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs5 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs5 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs5 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs5 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent5
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs6
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails6{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs6 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs6 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs6 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs6 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs6 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs6 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs6 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs6 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs6 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs6 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent6
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs7
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails7{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs7 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs7 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs7 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs7 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs7 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs7 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs7 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs7 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs7 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs7 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent7
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs8
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails8{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs8 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs8 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs8 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs8 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs8 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs8 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs8 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs8 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs8 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs8 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent8
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs9
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails9{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs9 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs9 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs9 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs9 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs9 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs9 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs9 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs9 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs9 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs9 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent9
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs10
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails10{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs10 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs10 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs10 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs10 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs10 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs10 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs10 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs10 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs10 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs10 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent10
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs11
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails11{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs11 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs11 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs11 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs11 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs11 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs11 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs11 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs11 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs11 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs11 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent11
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs12
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails12{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs12 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs12 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs12 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs12 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs12 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs12 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs12 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs12 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs12 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs12 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.shadetabs12
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs13
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails13{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs13 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs13 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs13 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs13 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs13 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs13 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs13 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs13 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs13 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs13 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.shadetabs13
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+/**/
+
+/* ######### CSS for Shade Tabs. Remove if not using ######### */
+
+.shadetabs14
+{
+
+	margin: 0px;
+	border-bottom: solid 0px #d7d7d7;
+	width: 100%;
+	 text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:12px;  
+}
+.TabContentDetails14{border: 0px solid #990000; width:98%; float: left; margin-bottom: 1em; padding: 0px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs14 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs14 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs14 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs14 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs14 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+	
+}
+.shadetabs14 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;
+	border: solid 0px #993300;background-color: #666; float:left;padding: 5px 0px 5px 0px;text-align:center
+	
+}
+.shadetabs14 li a:visited
+{
+	color:#fff
+}
+
+.shadetabs14 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+.shadetabs14 li a.selected
+{ 
+	position: relative;
+border: 0px solid #778;
+	color: #FFFFFF;width:145px;color:#fff
+	border: solid 0px #993300;background-color: #99cc00; float:left;padding: 5px 0px 5px 0px; margin-left:5px;text-align:center
+}
+
+
+.shadetabs14 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent14
+{
+	display:block !important;color:#fff
+}
+
+}
+/**/
+
+
+
+.formlabel1-1
+{
+	width:50px;
+}
+
+
+
+
+
+
+select
+{
+ border-radius: 0 0 0px 0px;
+  -moz-border-radius: 0 0 0px 0px;
+  -webkit-border-radius: 0 0 0px 0px;
+}

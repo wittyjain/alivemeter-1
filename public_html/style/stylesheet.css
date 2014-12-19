@@ -1,0 +1,480 @@
+@charset "utf-8";
+/* CSS Document */
+
+body
+{
+	margin: 0px;
+	padding: 0px;
+	background-color: #ded4bb;
+	background-image: url(../images/bg.jpg);
+	background-repeat: no-repeat;
+	background-position: center top;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color:#5e5e5e;
+	line-height: 17px;
+}
+
+
+#Wrapper
+{
+	width: 990px;
+	margin: 0 auto;
+	border: solid 0px #990000;
+}
+
+.DvFloat
+{
+	width: 100%;
+	float: left;
+}
+
+.HeaderLeftBg
+{
+	width: 22px;
+	height: 115px;
+	float: left;
+	background-image: url(../images/header_bg/left_curv.png);
+	background-repeat: no-repeat;
+}
+
+.HeaderCenterBg
+{
+	width: 946px;
+	height: 115px;
+	float: left;
+	background-image: url(../images/header_bg/center_curv.png);
+	background-repeat: repeat-x;
+}
+
+.HeaderrightBg
+{
+	width: 22px;
+	height: 115px;
+	float: right;
+	background-image: url(../images/header_bg/right_curv.png);
+	background-repeat: no-repeat;
+}
+
+.fiftyLeftDv
+{
+	width: 50%;
+	float: left;
+}
+
+.fiftyRightDv
+{
+	width: 50%;
+	float: right;
+}
+
+.LogoDv
+{
+	width: 264px;
+	float: left;
+	padding: 13px 0px 0px 22px;
+}
+
+.TopLinkDv
+{
+	width: 264px;
+	float: right;
+	background-color: #1b7693;
+	padding: 15px 0px 15px 0px;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.callusTxt
+{
+	color: #de6a00;
+	font-size: 17px;
+	text-decoration: none;
+}
+
+.TelNoTxt
+{
+	color: #1663a2;
+	text-decoration: none;
+}
+
+.MenuLeftBg
+{
+	width: 22px;
+	height: 49px;
+	float: left;
+	background-image: url(../images/menu_bg/menu_left_bg.png);
+	background-repeat: no-repeat;
+}
+
+.MenuCenterBg
+{
+	width: 946px;
+	height: 49px;
+	float: left;
+	background-image: url(../images/menu_bg/menu_center_bg.png);
+	background-repeat: repeat-x;
+}
+
+.MenurightBg
+{
+	width: 22px;
+	height: 49px;
+	float: right;
+	background-image: url(../images/menu_bg/menu_right_bg.png);
+	background-repeat: no-repeat;
+}
+
+.ContentTopBg
+{
+	width: 990px;
+	height: 13px;
+	float: left;
+	background-image: url(../images/content_bg/top_bg.png);
+	background-repeat: no-repeat;
+	background-position: top center;
+}
+
+.ContentCenterBg
+{
+	width: 990px;
+	float: left;
+	background-image: url(../images/content_bg/center_bg.png);
+	background-repeat: repeat-y;
+	border: solid 0px #000033;
+}
+
+.ContentBottomBg
+{
+	width: 990px;
+	height: 13px;
+	float: left;
+	background-image: url(../images/content_bg/bottom_bg.png);
+	background-repeat: no-repeat;
+	background-position: bottom center;
+}
+
+.ScriptHeadMainDv
+{
+	width: 578px;
+	float: left;
+	padding: 0px 4px 0px 5px;
+}
+
+.SrciptBoxBg
+{
+	width: 578px;
+	float: left;
+	height: 332px;
+}
+
+.TabDv
+{
+	width: 390px;
+	float: right;
+	padding: 0px 11px 0px 0px;
+}
+
+.ContentLeftMainDv
+{
+	padding: 17px 11px 0px 6px;
+	width: 973px;
+	float: left;
+}
+
+#LeftDv
+{
+	width: 352px;
+	float: left;
+}
+
+.LeftDvBg
+{
+	width: 100%;
+	float: left;
+	border: solid 1px #d6d7d6;
+	background-color: #ecf6f6;
+}
+
+#CenterDv
+{
+	width: 395px;
+	float: left;
+	padding: 0px 6px 0px 6px;
+	border: solid 0px #CC0099;
+}
+
+#RightDv
+{
+	width: 213px;
+	float: right;
+	border: solid 0px #FF00CC;
+}
+
+.TourHotelPackDv
+{
+	width: 343px;
+	float: left;
+	padding: 4px 4px 0px 4px;
+}
+
+.TourTitleDv
+{
+	width: 169px;
+	float: left;
+}
+
+.HotelTilteDv
+{
+	width: 170px;
+	float: right;
+}
+
+.FeaturedDv
+{
+	width: 343px;
+	float: left;
+}
+
+.FeaturedTitleDv
+{
+	width: 351px;
+	float: left;
+}
+
+.BlueBg
+{
+	float: left;
+	width: 100%;
+	background-color: #53c3e6;
+}
+
+.TitlePading
+{
+	float: left;
+	padding: 11px 0px 8px 10px;
+	text-align: left;
+}
+
+ul.bullet
+{ 
+	margin-left:0em; 
+	padding-left:0.5em;
+	padding-top:0.5em;
+	margin-bottom:0.5em;
+	margin-top: 0.5em; 
+}
+ul.bullet li
+{ 
+	background: url(../images/bullet.png) 0em 0.3em no-repeat; /* change background em accordingly */
+	padding-left:1.0em; 
+	list-style: none; 
+	line-height:20px;
+	color: #007093;
+}
+
+.BlueTxt
+{
+	color: #035ba5;
+	text-decoration: none;
+}
+
+.FTPpading
+{
+	width: 337px;
+	float: left;
+	padding: 12px 7px 0px 7px;
+}
+
+.FTImgDv
+{
+	width: 87px;
+	float: left;
+}
+
+.FtTxtDv
+{
+	width: 239px;
+	float: left;
+	padding: 0px 0px 0px 11px;
+}
+
+.GreyBg
+{
+	background-color: #d3d4d4;
+}
+
+.DestinationsDvPading
+{
+	padding: 11px 9px 20px 8px;
+	width: 373px;
+	float: left;
+	border: solid 0px #330099;
+}
+
+.packLeftMainDv
+{
+	width: 178px;
+	float: left;
+	border: solid 0px #9900CC;
+}
+
+.packRightMainDv
+{
+	width: 178px;
+	float: right;
+	border: solid 0px #006600;
+}
+
+.PackImageDv
+{
+	width: 166px;
+	float: left;
+	padding: 6px 6px 6px 6px;
+	text-align: center;
+	background-color: #d3d4d4;
+}
+
+.PackNameDv
+{
+	width: 166px;
+	float: left;
+	padding: 6px 0px 6px 12px;
+	text-align: left;
+	background-color: #717b84;
+	border-top: solid 1px #ecf6f6;
+	color: #FFFFFF;
+}
+
+.HPpadingMainDv
+{
+	width: 187px;
+	float: right;
+	padding: 0px 0px 0px 12px;
+}
+
+.DarkGreyBg
+{
+	width: 100%;
+	float: left;
+	background-color: #717b83;
+}
+
+.InterGetwayMainDv
+{
+	width: 204px;
+	float: left;
+	padding: 5px 4px 0px 3px;
+	text-align: left;
+}
+
+.InterGetImageDv
+{
+	width: 192px;
+	float: left;
+	border: solid 6px #d3d4d4;
+}
+
+.TestimonialsDvBg
+{
+	width: 100%;
+	float: left;
+	border: solid 1px #d6d7d6;
+	background-color: #e2e7eb;
+	line-height: 18px;
+}
+
+#BottomPackDv
+{
+	width: 969px;
+	float: left;
+	padding: 5px 6px 0px 13px;
+	text-align: justify;
+	border: solid 0px #61292B;
+}
+
+.GreyPackbg
+{
+	width: 319px;
+	float: left;
+	background-color: #d7dbe1;
+}
+
+.GreyPackRightbg
+{
+	width: 319px;
+	float: right;
+	background-color: #d7dbe1;
+}
+
+.BottomDiv
+{
+	width: 6px;
+	float: left;
+}
+
+.BotGreypadingDv
+{
+	width: 300px;
+	float: left;
+	padding: 16px 9px 16px 10px;
+}
+
+.BotomPackImgBor
+{
+	width: 120px;
+	float: left;
+	border: solid 2px #FFFFFF;
+}
+
+.BotomPackTxt
+{
+	width: 162px;
+	float: right;
+	padding: 8px 0px 0px 13px;
+	text-align: left;
+}
+
+.BlueBTxt
+{
+	color: #035ba5;
+	text-decoration: none;
+	font-size: 15px;
+}
+
+a.bottomlink:link
+{
+	color: #000000;
+	text-decoration: none;
+}
+
+a.bottomlink:visited
+{
+	color: #000000;
+	text-decoration: none;
+}
+
+a.bottomlink:hover
+{
+	color: #1b7693;
+	text-decoration: none;
+}
+
+.seperator
+{
+	width: 2px;
+	height: 49px;
+	float: left;
+	padding: 0px 22px 0px 22px;
+}
+
+
+
+
+select
+{
+ border-radius: 0 0 0px 0px;
+  -moz-border-radius: 0 0 0px 0px;
+  -webkit-border-radius: 0 0 0px 0px;
+}
+
