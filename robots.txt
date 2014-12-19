@@ -1,0 +1,55 @@
+Sitemap: http://www.alivemeter.com/sitemap.xml
+
+User-agent: *
+Disallow: /likedus.php
+
+User-agent: *
+Disallow: /page.php?dir=account/forgot_password
+
+User-agent: *
+Disallow: /dir=account/forgot_username
+
+User-agent: *
+Disallow: /page.php?dir=registration/sign_up
+
+User-agent: *
+Disallow: /page.php?dir=registration/step1
+
+User-agent: *
+Disallow: /page_doctor.php?dir=clerk/login
+
+User-agent: *
+Disallow: /page_doctor.php?dir=doctor/forgot_password
+
+User-agent: *
+Disallow: /page_doctor.php?dir=doctor/login
+
+User-agent: *
+Disallow: /page_doctor.php?dir=md/forgot_password
+
+User-agent: *
+Disallow: /page_doctor.php?dir=md/login
+
+User-agent: *
+Disallow: /page_doctor.php?dir=nutritionist/forgot_password
+
+User-agent: *
+Disallow: /page_doctor.php?dir=nutritionist/login
+
+User-agent: *
+Disallow: /privacy_policy.php
+
+User-agent: *
+Disallow: /disclaimer.php
+
+User-agent: *
+Disallow: /refer_a_friend.php
+
+User-agent: *
+Disallow: /terms_conditions.php
+
+User-agent: *
+Disallow: /cgi-bin
+
+User-agent: *
+Disallow: /ckeditor

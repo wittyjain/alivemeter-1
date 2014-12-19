@@ -1,0 +1,1637 @@
+<?php
+class  get_retrive_class {
+	var $db;
+	function get_retrive_class() {
+		$this->db = new db_class;
+	}
+
+	function getReceipe($user_id,$type,$date)
+	{
+		$query = "SELECT b.name as receipe_name,b.portion,SUM(a.qty) as qunty,sum(a.energy) as cal FROM tbl_daily_food a inner join tbl_recipe b on a.receipe_id=b.id  WHERE a.type='$type' and a.user_id=$user_id and a.date='$date' group by a.receipe_id";
+		//echo $query;
+		$rows  = mysql_query($query); 
+		return $rows;
+	}
+	
+	function GetCalCounter($user_id, $paging)
+	{
+		
+		$query = "SELECT distinct DATE_FORMAT(a.date,'%Y-%m-%d') as date FROM v_cal_counter a where a.user_id=$user_id and DATE_FORMAT(a.date,'%Y-%m-%d') not in (select DATE_FORMAT(record_date,'%Y-%m-%d')  from tbl_nutritionist_cal_comm where patient_id=$user_id  ) order by date desc,type";
+		
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	}
+	
+	
+	function GetCalCounter_Count($user_id)
+	{
+		
+		$query = "SELECT Count(*) as col FROM v_cal_counter a where a.user_id=$user_id and DATE_FORMAT(a.date,'%Y-%m-%d') not in (select DATE_FORMAT(record_date,'%Y-%m-%d')  from tbl_nutritionist_cal_comm where patient_id=$user_id  ) order by date desc,type";
+		//echo $query;
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	function GetCalCounter_Nut($user_id)
+	{
+		
+		$query = "SELECT record_date as date,comment from tbl_nutritionist_cal_comm a where a.patient_id=$user_id";
+		$rows  = mysql_query($query); 
+		return $rows;
+	}
+
+	function GetCalCounter_Date($user_id,$date)
+	{
+		
+		$query = "SELECT * FROM v_cal_counter where user_id=$user_id and date='$date' order by date desc,type";
+	 //	echo $query;
+		$rows  = mysql_query($query); 
+		return $rows;
+	}
+
+	function Get_Md_Video_App($user_id,$type,$date)
+	{
+		
+		$query = "SELECT *,other_hospital_name as Hospital_Name,(select b.name from tbl_users b where a.patient_id=b.user_id) as Paitent_Name FROM ".Md_Appoint." a where md_id=$user_id and other_app='$type' and app_date='$date' and isdeleted=0 ";
+		$rows  = mysql_query($query); 
+		return $rows;
+	}
+
+	function GetDoctor($paging,$record_id,$type='')
+	{
+		
+		if(isset($_SESSION['UserID'])){
+			$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		$condition=""; $condition1="";
+		if($record_id > 0)
+		{
+			$condition1=$condition1." and doctor_id=".$record_id;
+		}
+		
+		$parent_id=GetValue("select parent_id as col from tbl_users where user_id=".$user_id, "col");
+		if($parent_id==0)
+		{
+			$parent_id=$user_id;
+		}
+		$condition=$condition." and type='".$type."'";
+		
+		$query = "SELECT * FROM  ".Doctor." where isactive=1 and isdeleted=0 ".$condition." ".$condition1." and parent_id=".$parent_id." order by doctor_name";
+		
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	 
+	 
+	 function GetMD()
+	{
+		
+		$query = "SELECT * FROM  ".Doctor." where isactive=1 and isdeleted=0 and type='MD' order by doctor_name";
+		
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query)); 
+		return $rows;
+	} 
+	
+	function GetFolders()
+	{
+		if(isset($_SESSION['UserID'])){
+			$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		$query = "SELECT * FROM  ".Folder." where (parentid=$user_id) order by name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetNutFolders()
+	{
+		if(isset($_SESSION['UserNutID'])){
+		$user_id=$_SESSION['UserNutID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		$query = "SELECT * FROM  ".Nut_Folder." where parentid=$user_id order by name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	
+	function Get_Records_Count($sql)
+	{
+		$nume=  GetValue($sql,"col");
+		return $nume;
+	}
+
+
+
+	function Get_Doctor_Count()
+	{
+		$condition="";
+		if(isset($_GET['type']))
+		{
+			$type = $_GET['type'];
+			$condition=$condition." and type=".$type;
+		}
+		
+		$query = "SELECT Count(*) as  col FROM  ".Doctor." where isactive=1 and isdeleted=0 and ".$condition."";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function Get_Doctor_Consultation_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Doctor." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	function Get_Doctor_Consultation($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and doc_consult_id=".$record_id;
+		}
+
+		$query = "SELECT *,(select b.doctor_name from ".Doctor." b where a.doctor_id=b.doctor_id) as doctor_name,
+		(select b.cond_name from ".Condition_Problem." b where a.diagnosed_cond=b.cond_id) as cond_name FROM  ".Doctor_Consult." a  where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by consult_date desc";
+		
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+
+
+	function Get_Hospital_Consultation_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Hospital." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	function Get_Hospital_Consultation($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and hospital_id=".$record_id;
+		}
+
+		$query = "SELECT *,(select b.doctor_name from ".Doctor." b where a.doctor_id=b.doctor_id) as doctor_name FROM  ".Hospital." a  where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by hospital_date desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	
+	function Get_Medication($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and medication_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Medication." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by medication_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_Medication_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Medication." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+
+	function Get_Allergies($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and allergies_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Allergies." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by allergies_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_Allergies_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Allergies." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+	function Get_Immunization($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and immunization_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Immunization." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by immunization_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_Immunization_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Immunization." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	
+	function Get_Family_History($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and family_history_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Family_History." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by family_history_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_Family_History_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Family_History." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+
+
+
+	function Get_Blood_Pressure($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and blood_pressure_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Blood_Pressure." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by blood_pressure_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+
+	function Get_Blood_Pressure_Chart($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and del_track_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT * FROM  ".Blood_Pressure." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." limit 0,".$rowcount;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+	function Get_Measurement_Chart_Yearly($rowcount,$user_id,$fromdate='',$todate='')
+		{
+
+			$condition="";
+
+
+			if($fromdate !="" && $todate!="" )
+			{
+			$condition=$condition." and weight_date between '".$fromdate."' and '".$todate."'";
+			}
+
+			$query = "SELECT avg(curr_wgt) as curr_wgt,DATE_FORMAT( weight_date, '%M-%Y' ) AS AvgMY,
+			avg(current_waist) as current_waist,avg(current_hips) as current_hips,avg(current_arm) as current_arm FROM ".Calorie_Det." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." Group by DATE_FORMAT( weight_date, '%m-%Y' ) limit 0,".$rowcount;
+
+			$rows = mysql_query($query);
+			return $rows;
+		}
+
+
+		function Get_Measurement_Chart($rowcount,$user_id,$fromdate='',$todate='')
+		{
+
+			$condition="";
+
+
+			if($fromdate !="" && $todate!="" )
+			{
+			$condition=$condition." and weight_date between '".$fromdate."' and '".$todate."'";
+			}
+
+			$query = "SELECT * FROM ".Calorie_Det." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." limit 0,".$rowcount;
+			$rows = mysql_query($query);
+		return $rows;
+		} 
+
+	function Get_Blood_Pressure_Chart_Yearly($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and del_track_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT  avg(blood_pressure_systolic) as blood_pressure_systolic,DATE_FORMAT( del_track_date,  '%M-%Y' ) AS AvgMY,
+		avg(blood_pressure_diatolic) as blood_pressure_diatolic FROM  ".Blood_Pressure." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." Group by DATE_FORMAT( del_track_date,  '%m-%Y' )  limit 0,".$rowcount;
+
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+
+	function Get_Sugar_Pressure_Chart($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and fasting_blood_sugar_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT * FROM  ".Sugar_Profile." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." limit 0,".$rowcount;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+
+	function Get_Sugar_Pressure_Chart_Yearly($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and fasting_blood_sugar_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT  avg(fasting_blood_sugar_result) as fasting_blood_sugar_result,DATE_FORMAT( fasting_blood_sugar_date,  '%M-%Y' ) AS AvgMY,
+		avg(post_parandial_result) as post_parandial_result,avg(urine_blood_result) as urine_blood_result,avg(random_blood_sugar_result) as random_blood_sugar_result FROM  ".Sugar_Profile." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." Group by DATE_FORMAT( fasting_blood_sugar_date,  '%m-%Y' )  limit 0,".$rowcount;
+
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function Get_Lipd_Pressure_Chart($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and triglyceride_blood_sugar_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT * FROM  ".Lipid_Profile." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." limit 0,".$rowcount;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+
+	function Get_Lipd_Pressure_Chart_Yearly($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and triglyceride_blood_sugar_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT  avg(cholesterol_result) as cholesterol_result,DATE_FORMAT( triglyceride_blood_sugar_date,  '%M-%Y' ) AS AvgMY,
+		avg(triglyceride_blood_sugar_result) as triglyceride_blood_sugar_result,avg(ldl_result) as ldl_result,avg(hdl_result) as hdl_result FROM  ".Lipid_Profile." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." Group by 
+		DATE_FORMAT( triglyceride_blood_sugar_date,  '%m-%Y' )  limit 0,".$rowcount;
+
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+	function Get_Life_Pressure_Chart($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and life_style_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT * FROM  ".Life_Style." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." limit 0,".$rowcount;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+
+	function Get_Life_Pressure_Chart_Yearly($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and life_style_date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT  avg(spirit) as spirit,DATE_FORMAT( life_style_date,  '%M-%Y' ) AS AvgMY,
+		avg(beer) as beer,avg(cigarette) as cigarette,avg(life_style_sleep) as life_style_sleep FROM  ".Life_Style." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." Group by 
+		DATE_FORMAT( life_style_date,  '%m-%Y' )  limit 0,".$rowcount;
+
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+
+
+	function Get_Calorie_Exce_Chart($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT *,min as exce_calorie,(select b.name from tbl_exercise b where b.id=a.exercise_id limit 1) as ExcName FROM  ".Exercise." a where  user_id=$user_id ".$condition." order by date,exercise_id ";
+
+		//echo $query;
+		//$query = "SELECT *,min as exce_calorie FROM  ".Exercise." where  user_id=$user_id ".$condition." order by date,exercise_id limit 0,".$rowcount;
+		/*$query = "SELECT
+				ci.date,
+				GROUP_CONCAT(ci.exercise_id) as exercise_ids,
+				GROUP_CONCAT(ci.min) as mins
+			FROM(
+				SELECT
+					date,
+					exercise_id,
+					min,
+					@num := if(@group = date, @num + 1, 1) as row_number,
+					@group := date as dummy                
+				FROM    tbl_daily_exercise
+				GROUP BY date , exercise_id,min
+				
+			) as ci
+			GROUP BY ci.date ";*/
+
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+
+	function Get_Calorie_Exce_Chart_Yearly($rowcount,$user_id,$fromdate='',$todate='')
+	{
+		
+		$condition="";
+		
+
+		if($fromdate !="" && $todate!="" )
+		{
+			$condition=$condition." and date between '".$fromdate."' and '".$todate."'";
+		}
+
+		$query = "SELECT  avg(min) as exce_calorie,DATE_FORMAT( date,  '%M-%Y' ) AS AvgMY
+		 FROM  ".Exercise." where user_id=$user_id ".$condition." Group by 
+		DATE_FORMAT( date,  '%m-%Y' ) order by DATE_FORMAT( date,  '%m-%Y' ) limit 0,".$rowcount;
+
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+	function Get_Blood_Pressure_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Blood_Pressure." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+
+	function Get_Life_Style($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and life_style_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Life_Style." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by life_style_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_Life_Style_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Life_Style." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function Get_Sugar_Profile($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and sugar_profile_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Sugar_Profile." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by sugar_profile_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_Sugar_Profile_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Sugar_Profile." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	
+	function Get_Lipid_Profile($paging,$record_id,$user_id,$date_cur='')
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and lipid_profile_id=".$record_id;
+		}
+		
+		if($date_cur!="")
+		{
+			$condition=$condition." and hdl_date='".$date_cur."'";
+		}
+		
+		
+		
+		
+		
+		$query = "SELECT * FROM  ".Lipid_Profile." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by lipid_profile_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_Lipid_Profile_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Lipid_Profile." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+	function Get_uploadFile($paging,$record_id,$randomid, $type)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and parent_id=$randomid and type='$type' ".$condition." order by id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function Get_uploadFile_Count($randomid, $type)
+	{
+		$randomid=""; $type="";
+		$query = "SELECT Count(*) as  col FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and parent_id=$randomid and type='$type'";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function Get_Lab_Report($record_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and id=".$record_id;
+		}
+		
+		if(isset($_SESSION['UserID'])){
+		$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+
+		$query = "SELECT * FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and userid=$user_id and report_type=2  ".$condition." order by id desc";
+		$rows  = mysql_query(getPagingQuery($query)); 
+		return $rows;	
+	} 
+	
+	function Get_Lab_Report_Count($randomid, $type)
+	{
+		$randomid=""; $type="";
+		$query = "SELECT Count(*) as  col FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and parent_id=$randomid and type='$type' and report_type=2";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function Get_Radiology_Report($paging,$record_id,$randomid, $type)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and id=".$record_id;
+		}
+		
+		if(isset($_SESSION['UserID'])){
+		$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+
+		$query = "SELECT * FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and userid=$user_id and report_type=3 ".$condition." order by id desc";
+		$rows  = mysql_query(getPagingQuery($query)); 
+		return $rows;	
+	} 
+	
+	function Get_Radiology_Report_Count($randomid, $type)
+	{
+		$randomid=""; $type="";
+		$query = "SELECT Count(*) as  col FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and parent_id=$randomid and type='$type' and report_type=3";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function Get_Prescription($record_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and id=".$record_id;
+		}
+		
+		if(isset($_SESSION['UserID'])){
+		$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+
+		$query = "SELECT *,(select b.doctor_name from ".Doctor." b where a.doctor_id=b.doctor_id) as doctor_name,
+		(select b.cond_name from ".Condition_Problem." b where a.diagnosed_cond=b.cond_id) as cond_name FROM  ".Doctor_Consult." a  where isactive=1 and isdeleted=0 and user_id=$user_id order by consult_date desc";
+		
+		
+		//$query = "SELECT * FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and userid=$user_id and report_type=1  ".$condition." order by id desc";
+		$rows  = mysql_query(getPagingQuery($query)); 
+		return $rows;	
+	} 
+	
+	function Get_Prescription_Count($randomid, $type)
+	{
+		$randomid=""; $type="";
+		$query = "SELECT Count(*) as  col FROM  ".Doctor_Consult." where isactive=1 and isdeleted=0";
+		//$query = "SELECT Count(*) as  col FROM  ".Doc_Consult_Gallery." where isactive=1 and isdelete=0 and parent_id=$randomid and type='$type' and report_type=1";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+	
+	
+
+	function Delete_Records($insert_type,$record_id)
+	{
+		if ($insert_type=="Doc_Consult_Ins")
+		{
+			 $query = "Update  ".Doctor_Consult." set isactive=0 , isdeleted=1 where doc_consult_id=".$record_id;
+			 mysql_query($query); 
+		}
+
+		if ($insert_type=="Hospital_Ins")
+		{
+			 $query = "Update  ".Hospital." set isactive=0 , isdeleted=1 where hospital_id=".$record_id;
+			 mysql_query($query); 
+		}
+
+
+		if ($insert_type=="Medication_Ins")
+		{
+			 $query = "Update  ".Medication." set isactive=0 , isdeleted=1 where medication_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		
+		if ($insert_type=="Allergies_Ins")
+		{
+			 $query = "Update  ".Allergies." set isactive=0 , isdeleted=1 where allergies_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		
+		if ($insert_type=="Immunization_Ins")
+		{
+			 $query = "Update  ".Immunization." set isactive=0 , isdeleted=1 where immunization_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Family_History_Ins")
+		{
+			 $query = "Update  ".Family_History." set isactive=0 , isdeleted=1 where family_history_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Blood_Pressure_Ins")
+		{
+			 $query = "Update  ".Blood_Pressure." set isactive=0 , isdeleted=1 where blood_pressure_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Life_Style_Ins")
+		{
+			 $query = "Update  ".Life_Style." set isactive=0 , isdeleted=1 where life_style_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Sugar_Profile_Ins")
+		{
+			 $query = "Update  ".Sugar_Profile." set isactive=0 , isdeleted=1 where sugar_profile_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Lipid_Profile_Ins")
+		{
+			 $query = "Update  ".Lipid_Profile." set isactive=0 , isdeleted=1 where lipid_profile_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Health_Problem_Ins")
+		{
+			 $query = "Update  ".Health_Problem." set isactive=0 , isdeleted=1 where health_problem_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="uploadFile")
+		{
+			 $query = "Update  ".Doc_Consult_Gallery." set isactive=0 , isdelete=1 where id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Compose_Ins")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Compose." set isactive=0, isdeleted=1 where mail_id in (".$record_id.")";
+			// echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Nut_Mails")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Nutritionist." set status='trash' where mail_id in (".$record_id.")";
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Nut_Sent_Mails")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Nut_Comment." set status='trash' where compose_id in (".$record_id.")";
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Profession")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Profession." set isactive=0, isdeleted=1 where profession_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Relation")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Relation." set isactive=0, isdeleted=1 where relation_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		
+		if ($insert_type=="Dignosed_Conditions")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Dignosed_Conditions." set isactive=0, isdeleted=1 where cond_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Allergy")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Allergy." set isactive=0, isdeleted=1 where allergy_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Specialization")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "Update ".Specialization." set isactive=0, isdeleted=1 where specialization_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Doctor")
+		{
+			 $query = "Update ".Doctor." set isactive=0, isdeleted=1 where doctor_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Hospital_Master")
+		{
+			 $query = "Update ".Hospital_Master." set isactive=0, isdeleted=1 where hospital_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		
+		if ($insert_type=="Food")
+		{
+			 $query = "delete from ".Food." where id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Exercise")
+		{
+			 $query = "delete from ".Exercise." where id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+
+
+		if ($insert_type=="Exercise_Diet")
+		{
+			 $query = "delete from ".Diet_Exercise." where id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+
+		if ($insert_type=="Food_Diet")
+		{
+			 $query = "delete from ".Diet_Food." where id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+
+
+
+		if ($insert_type=="Symptom")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "delete from ".Symptom." where symptom_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+
+		if ($insert_type=="Symptom_Cat")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "delete from ".Symptom_Cat." where cat_id=".$record_id;
+			 //echo $query;
+			 mysql_query($query); 
+		}
+		
+
+		if ($insert_type=="Symptom_Sub_Cat")
+		{
+			 if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			 $query = "delete from ".Symptom_Sub_Cat." where sub_cat_id=".$record_id;
+			 mysql_query($query); 
+		}
+		
+		if ($insert_type=="Diet_Plan_Remove")
+		{
+			//  if(isset($_GET['cid'])){$record_id=$_GET['cid'];}
+			//Alert($record_id);
+			 $query = "delete from ".Diet_Plan." where id=".$record_id;
+			 mysql_query($query);
+			 
+			 $query_f = "delete from ".Diet_Food." where diet_plan_id=".$record_id;
+			 mysql_query($query_f);
+			 
+			 $query_e = "delete from ".Diet_Exercise." where diet_plan_id=".$record_id;
+			 mysql_query($query_e);
+			 //echo  $query_e ;
+			 
+		}
+		
+		if ($insert_type=="Clerk_Ins")
+		{
+			 $query = "delete from ".Clerk." where clerk_id=".$record_id;
+			 mysql_query($query);
+		}
+		
+		if ($insert_type=="MD_App")
+		{
+			 $query = "delete from ".Md_Appoint." where app_id=".$record_id;
+			 mysql_query($query);
+		}
+		
+		
+
+		return true;
+	}	
+
+
+
+	function Get_Health_Problem_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Health_Problem." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	function Get_Health_Problem($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and health_problem_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Health_Problem." a  where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition." order by health_problem_id desc";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+
+	function Get_Health_Problem_Detail($paging,$record_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and parent_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Health_Problem_Details." a  where detail_id <> 0 ".$condition." order by problem_type";
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+
+	function GetMails($paging, $record_id)
+	{
+		if(isset($_SESSION['UserID'])){
+		$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		if(isset($_GET['status']))
+		{
+			$status=$_GET['status'];
+		}
+		else
+		{
+			$status="";
+		}
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and mail_id=".$record_id;
+		}
+
+		$query = "SELECT mail_id, complaint,  query_type, followup_query, doctor_id, created_date, mail_type FROM tbl_compose union all select mail_id, subject as complaint,  '', '', '', created_date,  mail_type from  tbl_compose_nutritionist where user_id=$user_id and status='$status' and isdeleted=0 and isactive=1 order by created_date desc";
+		
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 	
+	
+	
+	function GeNutMails($paging, $record_id)
+	{
+		if(isset($_GET['status']))
+		{
+			$status=$_GET['status'];
+		}
+		else
+		{
+			$status="";
+		}
+		$query = "SELECT * FROM  ".Nutritionist." where isdeleted=0 and isactive=1 and status='$status' order by created_date desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 	
+	
+	function GeNutMails_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Nutritionist." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function GetMails_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Compose." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function Get_Calorie_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Calorie." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	function Get_Calorie($record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and calorie_id=".$record_id;
+		}
+
+		$query = "SELECT * from ".Calorie." where isactive=1 and isdeleted=0 and user_id=$user_id order by sort desc limit 1";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	
+	
+	function GeSentMails($paging, $record_id)
+	{
+		if(isset($_SESSION['UserID'])){
+		$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and mail_id=".$record_id;
+		}
+	
+		if(isset($_GET['status']))
+		{
+			$status=$_GET['status'];
+		}
+		else
+		{
+			$status="";
+		}
+	
+		
+		
+		$query = "SELECT mail_id, complaint, status, query_type, followup_query, doctor_id, created_date FROM tbl_compose union all select mail_id, subject as complaint, status, '', '', '', created_date from  tbl_compose_nutritionist where user_id=$user_id and status='$status' and isdeleted=0 and isactive=1 order by mail_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 	
+	
+	
+	function Get_Calorie_Details($record_id,$user_id)	
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and id=".$record_id;
+		}
+
+		$query = "SELECT * from ".Calorie_Det." where isactive=1 and isdeleted=0 and user_id=$user_id ".$condition;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function Get_Calorie_Details_Count()
+	{
+		if(isset($_SESSION['UserID'])){
+		$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		$query = "SELECT Count(*) as  col FROM  ".Calorie_Det." where isactive=1 and isdeleted=0 and user_id=$user_id";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function GetFamilyMembers()
+	{
+		if(isset($_SESSION['UserID'])){
+		$user_id=$_SESSION['UserID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		$query = "SELECT * FROM  ".Users." where parent_id=$user_id order by name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	
+	function GetClients()
+	{
+	
+		$query = "SELECT * FROM  ".Compose." a where isactive=1 and isdeleted=0 and  mail_id not in (select compose_id from tbl_patients )";
+		//echo $query;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetMDClients()
+	{
+		if(isset($_SESSION['UserMDID'])){
+		$user_id=$_SESSION['UserMDID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		//$query = "SELECT * FROM  ".Doc_Comment." a where isactive=1 and isdeleted=0 and type='MD' and  md_id=$user_id and  compose_id not in (select compose_id from tbl_md_comment )";
+		
+		$query="SELECT a.* FROM tbl_doctor_comment a WHERE isactive=1 AND isdeleted=0 AND TYPE='MD' AND md_id =$user_id AND a.comment_id NOT IN (SELECT tbl_md_comment.doc_comment_id FROM tbl_md_comment WHERE tbl_md_comment.md_id =$user_id )";
+	//	echo $query;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetMDClients_Count()
+	{
+		if(isset($_SESSION['UserMDID'])){
+		$user_id=$_SESSION['UserMDID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		$query = "SELECT Count(*) as  col from ".Doc_Comment." a where isactive=1 and isdeleted=0 and type='MD' and  md_id=$user_id and  compose_id not in (select compose_id from tbl_md_comment )";
+		//echo $query;
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	function GetProfession()
+	{
+		$query = "SELECT * FROM  ".Profession." where isactive=1 and isdeleted=0 order by profession_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetRelation()
+	{
+		$query = "SELECT * FROM  ".Relation." where isactive=1 and isdeleted=0 order by relation_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetDignosedConditions()
+	{
+		
+		$query = "SELECT * FROM  ".Dignosed_Conditions." where isactive=1 and isdeleted=0 order by cond_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetAllergy()
+	{
+		
+		$query = "SELECT * FROM  ".Allergy." where isactive=1 and isdeleted=0 order by allergy_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetSpecialization()
+	{
+		
+		$query = "SELECT * FROM  ".Specialization." where isactive=1 and isdeleted=0 order by specialization_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+	function GetSymptom()
+	{
+		
+		$query = "SELECT * FROM  ".Symptom." where isactive=1 and isdeleted=0 order by Symptom_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	function GetSymptomCat()
+	{
+		
+		$query = "SELECT * FROM  ".Symptom_Cat." where isactive=1 and isdeleted=0 order by cat_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+	function GetSymptomSubCat()
+	{
+		
+		$query = "SELECT * FROM  ".Symptom_Sub_Cat." where isactive=1 and isdeleted=0 order by sub_cat_name";
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+
+	
+	
+	function GetHospitalMaster($paging,$record_id)
+	{
+		
+		$condition=""; $condition1="";
+		if($record_id > 0)
+		{
+			$condition1=$condition1." and hospital_id=".$record_id;
+		}
+		
+			
+		$query = "SELECT * FROM  ".Hospital_Master." where isactive=1 and isdeleted=0 ".$condition." order by hospital_name";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	
+	 
+	
+	function Get_HospitalMaster_Count()
+	{
+		
+		$query = "SELECT Count(*) as  col FROM  ".Hospital_Master." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	function GetUsers($paging)
+	{
+		
+		$query = "SELECT * FROM  ".Users." where isactive=1 and isdeleted=0 and parent_id=0 and registration_type='Main' order by user_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	}
+	
+
+		
+	function GetUsers_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Users." where isactive=1 and isdeleted=0 and parent_id=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}		
+	
+	function GetDocComments($paging,$patient_id,$user_id)
+	{
+		
+		$condition="";
+		if($patient_id > 0)
+		{
+			$condition=$condition." and patient_id=".$patient_id;
+		}
+			
+		if($user_id > 0)
+		{
+			//$condition=$condition." and doctor_id=".$user_id;
+		}
+		
+		$query = "SELECT * FROM  ".Doc_Comment." where isactive=1 and isdeleted=0 ".$condition." order by comment_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function GetDocComments_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Doc_Comment." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+	function GetDocMDComments($paging,$patient_id,$user_id)
+	{
+		
+		$condition="";
+		
+		if($patient_id > 0)
+		{
+			$condition=$condition." and patient_id=".$patient_id;
+		}
+			
+		if($user_id > 0)
+		{
+			//$condition=$condition." and doctor_id=".$user_id;
+		}
+		
+		$query = "SELECT * FROM  ".MD_Comment." where isactive=1 and isdeleted=0 ".$condition."  order by comment_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function GetDocMDComments_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".MD_Comment." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+	function GetMyMDComments_Count($md_id)
+	{
+		$query = "SELECT Count(*) as  col FROM  ".MD_Comment." where isactive=1   and md_id=$md_id and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	function GetOtherMDComments_Count($md_id)
+	{
+		$query = "SELECT Count(*) as  col FROM  ".MD_Comment." where isactive=1   and md_id<>$md_id and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+	
+	
+	function GetMyMDComments($paging,$patient_id,$md_id)
+	{
+		$condition="";
+		
+		if($patient_id > 0)
+		{
+			$condition=$condition." and patient_id=".$patient_id;
+		}
+			
+		if($md_id > 0)
+		{
+			//$condition=$condition." and doctor_id=".$user_id;
+		}
+		
+		$query = "SELECT * FROM  ".MD_Comment." where isactive=1 and isdeleted=0 ".$condition." and md_id=$md_id order by comment_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	
+	function GetOtherMDComments($paging,$patient_id,$md_id)
+	{
+		$condition="";
+		
+		if($patient_id > 0)
+		{
+			$condition=$condition." and patient_id=".$patient_id;
+		}
+			
+		if($md_id > 0)
+		{
+			//$condition=$condition." and doctor_id=".$user_id;
+		}
+		
+		$query = "SELECT * FROM  ".MD_Comment." where isactive=1 and isdeleted=0 ".$condition." and md_id<>$md_id order by comment_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+
+
+	function GetOldQueries()
+	{
+		if(isset($_SESSION['UserDocID'])){
+		$user_id=$_SESSION['UserDocID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		$query = "SELECT a.*, (select comment_id from tbl_doctor_comment b where a.accept_id=b.accept_id limit 1) as comment_id FROM   tbl_patients a where isactive=1 and isdeleted=0 and doctor_id=$user_id and isaccepted=1 and compose_id in (select mail_id from tbl_compose b where b.mail_id=a.compose_id) order by comment_id, accepted_date";
+		//echo $query;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+			
+			
+	function GetOldMDQueries()
+	{
+		if(isset($_SESSION['UserMDID'])){
+		$user_id=$_SESSION['UserMDID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		//$query = "SELECT a.*, (select comment_id from tbl_md_comment b where a.accept_id=b.accept_id) as comment_id FROM   tbl_patients a where isactive=1 and isdeleted=0 and doctor_id=$user_id and isaccepted=1 order by comment_id, accepted_date";
+		//$query = "SELECT distinct * from tbl_md_comment where md_id=$user_id order by created_date";
+		$query = "SELECT distinct compose_id, patient_id, (select b.comment_id from  tbl_md_comment b where a.patient_id=b.patient_id and a.compose_id=b.compose_id order by b.comment_id desc limit 1) as comment_id from tbl_md_comment a where md_id=$user_id order by created_date";
+		
+		//echo $query;
+		$rows  = mysql_query($query); 
+		return $rows;
+	} 
+	
+	
+	function GetNutPatients($paging)
+	{
+		if(isset($_SESSION['UserNutID'])){
+		$user_id=$_SESSION['UserNutID'];
+		}
+		else
+		{
+			$user_id=0;
+		}
+		
+		//$query = "SELECT a.*, (select comment_id from tbl_md_comment b where a.accept_id=b.accept_id) as comment_id FROM   tbl_patients a where isactive=1 and isdeleted=0 and doctor_id=$user_id and isaccepted=1 order by comment_id, accepted_date";
+	
+		$query = "SELECT * FROM  ".Users." a where isactive=1 and isdeleted=0 and parent_id=0 and  user_id in (select patient_id from tbl_nutrionist_patients )";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+	
+	function GetNutPatients_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Users." a where isactive=1 and isdeleted=0 and parent_id=0 and  user_id in (select patient_id from tbl_nutrionist_patients )";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+	
+	
+	function GetDietPlan($paging,$patient_id,$nutritionist_id)
+	{
+		
+		$condition="";
+		
+		if($patient_id > 0)
+		{
+			$condition=$condition." and patient_id=".$patient_id;
+		}
+			
+		if($nutritionist_id > 0)
+		{
+			$condition=$condition." and nutritionist_id=".$nutritionist_id;
+		}
+		
+		$query = "SELECT * FROM  ".Diet_Plan." where isactive=1 and isdeleted=0 ".$condition." order by id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+		
+	function GetDietPlan_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Diet_Plan." where isactive=1 and isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}
+
+
+	
+	function GetClerk($paging,$record_id)
+	{
+		
+		$condition=""; $condition1="";
+		if($record_id > 0)
+		{
+			$condition1=$condition1." and clerk_id=".$record_id;
+		}
+		
+			
+		$query = "SELECT * FROM  ".Clerk." where isactive=1 and isdeleted=0";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 
+
+	
+	function GetNutSentMails($paging, $record_id)
+	{
+		if(isset($_SESSION['UserNutID'])){
+		$nutritionist_id=$_SESSION['UserNutID'];
+		}
+		else
+		{
+			$nutritionist_id=0;
+		}
+		
+		if(isset($_GET['status']))
+		{
+			$status=$_GET['status'];
+		}
+		else
+		{
+			$status="";
+		}
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and mail_id=".$record_id;
+		}
+
+		
+		$query = "SELECT * FROM  ".Nut_Comment." where nutritionist_id=$nutritionist_id and status='$status' ".$condition." and isdeleted=0 and isactive=1 order by comment_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 	
+			
+
+	function GetMDApp($paging,$record_id,$user_id)
+	{
+		
+		$condition="";
+		if($record_id > 0)
+		{
+			$condition=$condition." and app_id=".$record_id;
+		}
+
+		$query = "SELECT * FROM  ".Md_Appoint." where isdeleted=0 ".$condition." order by app_id desc";
+		//echo $query;
+		$rows  = mysql_query(getPagingQuery($query, $paging)); 
+		return $rows;
+	} 	
+		
+	function GetMDApp_Count()
+	{
+		$query = "SELECT Count(*) as  col FROM  ".Md_Appoint." where isdeleted=0";
+		$nume=$this->Get_Records_Count($query);
+		return $nume;
+	}	
+	
+
+
+
+}
+?>
+

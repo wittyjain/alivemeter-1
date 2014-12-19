@@ -1,0 +1,180 @@
+<?php //include('../log4/Logger.php');?>
+<?php
+	//Logger::configure('../config.xml');
+	// table constraints defined
+	define('AdminLogin', 'tbl_adminlogin');
+	define('Config_Settings', 'tbl_client_configurations');
+	define('Users', 'tbl_users');
+	define('Doctor','tbl_doctor');
+	define('Doctor_Consult','tbl_doc_consult');
+	define('Condition_Problem','tbl_conditions');
+	define('Medication','tbl_medication');
+	define('Allergies','tbl_allergies');
+	define('Hospital','tbl_hospital');
+	define('Immunization','tbl_immunization');
+	define('Family_History','tbl_family_history');
+	define('Blood_Pressure','tbl_blood_pressure');
+	define('Life_Style','tbl_life_style');
+	define('Sugar_Profile','tbl_sugar_profile');
+	define('Lipid_Profile','tbl_lipid_profile');
+	define('Health_Problem','tbl_health_problem');
+	define('Health_Problem_Details','tbl_health_problem_details');
+	define('Doc_Consult_Gallery','tbl_doc_consult_gallery');
+	define('Compose','tbl_compose');
+	define('Nutritionist','tbl_compose_nutritionist');
+	define('Upload_Compose','tbl_upload_compose');
+	define('Folder', 'tbl_folder');
+	define('WishList', 'tbl_wishlist');
+	define('Calorie', 'tbl_calorie');
+	define('Calorie_Det', 'tbl_calorie_det');
+	define('Profession', 'tbl_profession');
+	define('Relation', 'tbl_relation');
+	define('Dignosed_Conditions', 'tbl_dignosed_conditions');
+	define('Allergy', 'tbl_allergy');
+	define('Hospital_Master', 'tbl_hospital_master');
+	define('Specialization', 'tbl_specialization');
+	define('Food', 'tbl_daily_food');
+	define('Exercise', 'tbl_daily_exercise');
+	define('Calorie_Consumed', 'tbl_calorie_consumed');
+	define('Patients', 'tbl_patients');
+	define('Water', 'tbl_daily_water');
+	define('Symptom', 'tbl_symptom');
+	define('Symptom_Cat', 'tbl_symp_categroy');
+	define('Symptom_Sub_Cat', 'tbl_symp_sub_categroy');
+	define('Doc_Comment', 'tbl_doctor_comment');
+	define('MD_Comment', 'tbl_md_comment');
+	define('Nut_Patients', 'tbl_nutrionist_patients');
+	define('Diet_Exercise', 'tbl_diet_exercise');
+	define('Diet_Food', 'tbl_diet_food_plan');
+	define('Diet_Plan', 'tbl_diet_plan');
+	define('Clerk', 'tbl_clerk');
+	define('Nut_Comment', 'tbl_nutritionist_comments');
+	define('Nut_Folder', 'tbl_nutritionist_folder');
+	define('Nut_WishList', 'tbl_nut_wishlist');
+	define('Nut_Cal_Comm', 'tbl_nutritionist_cal_comm');
+	define('Md_Appoint','md_appointment');
+	define('Medical_History','tbl_medical_history');
+	define('Customize','tbl_customize');
+	define('Category','tbl_category');
+	define('Top_Story','tbl_cover_story');
+	define('Post_Comment','tbl_post_comment');
+	define('Deal','tbl_deal');
+	define('Deal_Category','tbl_deal_category');
+	define('Users_NA','tbl_user_not_applicable');
+	define('City','tbl_city');
+	define('State','tbl_state');
+	define('Location','tbl_location');
+	define('Reward_Points','tbl_reward_points');
+	define('User_Reviews','tbl_user_reviews');
+	define('Be_With_Us','tbl_be_with_us');
+	define('Blog','tbl_blog');
+	define('Refer_Friend','tbl_refer_a_friend');
+	define('Total_Reward_Points','tbl_total_reward_points');
+	define('Get_Coupon','tbl_get_coupon');
+	define('Redeem_Points','tbl_redeem_points');
+	define('Bp_Age_Masters','tbl_bp_age_master');
+	define('Nutritionist_Main','tbl_nutritionist_main');
+	define('Exercises','tbl_exercise');
+	define('User_Hospital','tbl_user_hospital');
+	define('Pincode','tbl_pincode');
+	define('Customized_Data','tbl_customized_data');
+	define('Daily_Report_ShowHide','tbl_daily_report_show_hide'); 
+	define('Mobile','tbl_mobile_verify'); 
+	
+	
+	
+	class common_class {
+
+		var $db;
+		
+		function common_class() {
+			// class constructor.  Initializations here.
+			$this->db = new db_class;
+	   	}
+	   
+	   	function CheckConfigurationSettings() {
+		  	$rows = $this->db->select("SELECT * FROM ".Config_Settings."");
+			if ($this->db->row_count > 0) 
+				return true;
+			else
+				return false;
+	   	}
+		
+		function GetAdminTitle() {
+		  	$rows = $this->db->select("SELECT * FROM ".Config_Settings."");
+			if ($this->db->row_count > 0) 
+				while ($r=$this->db->get_row($rows, 'MYSQL_ASSOC')) {
+				   return $r['admintitle'];
+				}
+			else
+				return "Set Admin Title";
+	   	}
+		
+		function GetValue($query, $colname) {
+		  	$rows = $this->db->select($query);
+			if ($this->db->row_count > 0) {
+				while ($r=$this->db->get_row($rows, 'MYSQL_ASSOC')) {
+				   return $r[''.$colname.''];
+				}
+			}
+	   	}
+		
+		
+		function GetUserID() {
+			$strValue = "";
+			if(isset($_SESSION['UserID'])) {
+				$strValue = $_SESSION['UserID'];
+			} else if(isset($_SESSION['GuestID'])) {
+				$strValue = $_SESSION['GuestID'];
+			}
+			return $strValue;
+		}
+		
+		function SetGuestID() {
+			$_SESSION['GuestID'] =strtotime(date('Y-m-d H:i:s')) ;//rand(0, 9999).date("d", time()).date("m", time()).date("y", time());
+			$_SESSION['UserType'] = "Guest";
+		}
+		
+		function GetUserType() {
+			return $_SESSION['UserType'];
+		}
+		
+		function GetUserName() {
+			if(isset($_SESSION['UserName']))
+			{
+				return $_SESSION['UserName'];
+			}
+		}
+		
+		function GetOrderID() {
+			if(isset($_SESSION['OrderID']))
+			{
+				return $_SESSION['OrderID'];
+			}
+		}
+		
+		function GetGuestID() {
+			return $_SESSION['GuestID'];
+		}
+}
+
+class Foo
+{
+   
+    private $log;
+	
+
+    
+    public function __construct()
+    {
+        
+        //$this->log = Logger::getLogger(__CLASS__);
+    }
+ 
+    public function go($error_msg)
+    {	 
+//        $this->log->info($error_msg);
+    }
+}
+ 
+?>

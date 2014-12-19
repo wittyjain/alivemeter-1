@@ -1,0 +1,32 @@
+<?php
+	
+	include('db.class.php');
+	include('common.class.php');
+	include("encryption.inc.php");
+	include("paging.inc.php");
+	
+	
+	// database constraints defined local
+	/*define('strLocalhost', 'localhost');
+	define('strUsername', 'mycity91_nassu');
+	define('strPassword', 'Ppm@gVdT9Q+Z');
+	define('strDatabaseName', 'mycity91_nyassa');*/
+
+	define('strLocalhost', 'localhost');
+	define('strUsername', 'root');
+	define('strPassword', '');
+	define('strDatabaseName', 'shoppingcart');
+	
+	
+	
+	
+	// class instance created
+	$db = new db_class;
+	$common = new common_class;
+	$converter = new Encryption;
+	
+	// checking connectivity of database
+	if (!$db->connect(strLocalhost, strUsername, strPassword, strDatabaseName, true)) 
+   	$db->print_last_error(false);
+	
+?>

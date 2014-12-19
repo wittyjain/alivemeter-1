@@ -1,0 +1,102 @@
+.shadetabs1
+{
+	padding: 0px;
+	margin: 0px;
+	border-bottom: solid 1px #d7d7d7;
+	text-transform:uppercase;
+	list-style-type: none;
+	background-image: url(../images/tab_header.png);
+	background-repeat: no-repeat;
+	text-align: left;font-family:"myriad_web_proregular"; font-size:14px;  
+}
+.TabContentDetails1{border: 0px solid gray; width:990px; float: left; margin-bottom: 1em; padding: 10px 0px; background-color: #fff; color: #FFFFFF; height:auto}
+.shadetabs1 li
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+	color:#666
+	
+}
+.shadetabs1 li:hover
+{
+	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li.selected
+{
+	display: inline;
+	margin: 0px;
+	padding: 5px 0px;
+	border: solid 0px #993300;color:#666
+	
+}
+.shadetabs1 li:last-child
+{	display: inline;
+	margin: 0px;
+	padding: 8px 0px;
+	border: solid 0px #993300;
+background-image:none;color:#666
+}
+
+.shadetabs1 li a
+{
+	text-decoration: none;
+	position: relative;
+	z-index: 1;
+	padding: 13px 89px 13px 89px;
+	border: 1px solid #dedede;
+	color: #666666;
+	margin: 0px 0px 0px 0px;
+	color: #666;
+	background-color: #FFF;
+	font-size: 14px;
+}
+
+.shadetabs1 li a:visited
+{
+	color:#666
+}
+
+.shadetabs1 li a:hover
+{
+	text-decoration: underline;
+	color: #FFFFFF;
+	 background-color:#c02c3e;top: 2px;
+}
+
+.shadetabs1 li a.selected
+{ 
+	position: relative;
+	top: 2px;
+	background-color:#c02c3e;
+	color:#fff
+}
+
+
+.shadetabs1 li a.selected:hover
+{ 
+	text-decoration: none;color:#fff
+}
+
+
+@media print
+{
+.tabcontent1
+{
+	display:block !important;color:#666
+}
+
+}
+
+
+select
+{
+ border-radius: 0 0 0px 0px;
+  -moz-border-radius: 0 0 0px 0px;
+  -webkit-border-radius: 0 0 0px 0px;
+}
