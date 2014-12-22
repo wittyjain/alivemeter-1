@@ -1,10 +1,4 @@
 Options +FollowSymLinks
-RewriteEngine On
-RewriteCond %{HTTP_HOST} !^www.alivemeter.com$ [NC]
-RewriteRule ^(.*)$ http://www.alivemeter.com/$1 [L,R=301]
-
-RewriteCond %{HTTP_HOST} ^180\.149\.242\.20
-RewriteRule (.*) http://www.alivemeter.com/$1 [R=301,L]
 RewriteRule ^stories/(.*)/(.*) top_stories_details.php?cid=$2&url_code=$1
 RewriteRule ^deals/(.*)/(.*) deals_detailspage.php?cid=$2&url_code=$1
 
